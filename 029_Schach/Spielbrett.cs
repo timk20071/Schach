@@ -8,17 +8,22 @@ namespace _029_Schach
 {
     internal class Spielbrett
     {
-        Figur[][] Brett = new Figur[8][8];
+        Figur[,] Brett = new Figur[8, 8];   
 
-        public void Print(Figur[][] Brett)
+        public void Print(Figur[,] Brett)
         {
-            for (int i = 0; i <= 8; i++)
+            
+            for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; i <= 8; j++)
+                Console.Write("\n---------------------------------\n| ");
+                for (int j = 0; j < 8; j++)
                 {
-                    Console.WriteLine(Brett[i][j]);
+
+                    Console.Write(Brett[i, j].ToString() + " | ");
                 }
-            }    
+                
+            }
+            Console.WriteLine("\n---------------------------------");
         }
     }
 }
