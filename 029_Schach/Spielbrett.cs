@@ -18,6 +18,7 @@ namespace _029_Schach
                 {
                     Console.WriteLine(Brett[i][j]);
                 }
+                Console.WriteLine("---------------------------------");
             }    
         }
     }
