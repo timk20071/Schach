@@ -13,7 +13,7 @@ namespace _029_Schach {
             Symbol = symbol;
         }
         
-        public bool Move(int startxpos, int startypos, int destxpos, int destypos) {
+        public bool Move(int startxpos, int startypos, int destxpos, int destypos, Figur[,] Brett) {
             // MoveValid()
             if(IsColliding(startxpos, startypos)) {
                 if (Brett[startypos, startxpos].IsWhite != Brett[destypos,destxpos].IsWhite) {
