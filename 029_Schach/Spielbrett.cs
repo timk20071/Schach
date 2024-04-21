@@ -9,7 +9,7 @@ namespace _029_Schach
 {
     internal class Spielbrett {
         public Figur[,] Brett = new Figur[8, 8];
-
+        
         public Spielbrett() {
             Reset();
         }
@@ -115,5 +115,6 @@ namespace _029_Schach
             fs.Close();
             return datatext;
         }
+
     }
 }
