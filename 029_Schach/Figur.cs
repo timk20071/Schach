@@ -12,14 +12,30 @@ namespace _029_Schach {
             IsWhite = iswhite;
             Symbol = symbol;
         }
-
-        public bool IsColliding(int xpos, int ypos) {
-            if (Brett[ypos][xpos] == null) {
+        
+        public bool Move(int startxpos, int startypos, int destxpos, int destypos) {
+            // MoveValid()
+            if(IsColliding(startxpos, startypos)) {
+                if (Brett[startypos, startxpos].IsWhite != Brett[destypos,destxpos].IsWhite) {
+                    Brett[destypos,destxpos] = Brett[startypos,startxpos];
+                    Brett[startypos,startxpos] = null;
+                    return true;
+                }
+            }
+            else {
+                Brett[destypos,destxpos] = Brett[startypos,startxpos];
+                Brett[startypos,startxpos] = null;
                 return true;
             }
             return false;
         }
         
+        public bool IsColliding(int xpos, int ypos) {
+            if (Brett[ypos, xpos] == null) {
+                return false;
+            }
+            return true;
+        }
 
     }
 }
