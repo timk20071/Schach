@@ -14,7 +14,7 @@ namespace _029_Schach {
         }
 
         public bool IsColliding(int xpos, int ypos) {
-            if (Brett[ypos][xpos] == null) {
+            if (Brett[ypos, xpos] == null) {
                 return true;
             }
             return false;
