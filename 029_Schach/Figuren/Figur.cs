@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _029_Schach {
+namespace _029_Schach.Figuren {
     internal class Figur {
         public bool IsWhite { get; set; }
         public char Symbol { get; set; }

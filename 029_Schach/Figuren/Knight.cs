@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _029_Schach {
+namespace _029_Schach.Figuren {
     internal class Knight : Figur{
         private static char _symbolBlack = '\u265E';
         private static char _symbolWhite = '\u2658';
