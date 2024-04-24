@@ -13,7 +13,8 @@ namespace _029_Schach.Figuren {
         public Pawn(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
         public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
-            if ((currxpos + 2) == targetxpos && currypos == targetypos && _hasmoved == false) {
+            if ((currypos + 2) == targetypos && currxpos == targetxpos && _hasmoved == false ||
+                (currypos - 2) == targetypos && currxpos == targetxpos && _hasmoved == false) {
                 _hasmoved = true;
                 return true;
             }
