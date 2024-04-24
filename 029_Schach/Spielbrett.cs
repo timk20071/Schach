@@ -24,8 +24,10 @@ namespace _029_Schach
                 Console.Write("\n---------------------------------\n| ");
                 for (int j = 0; j < 8; j++)
                 {
-
-                    Console.Write(Brett[i, j].ToString() + " | ");
+                    if (Brett[j, i] != null)
+                        Console.Write(Brett[j, i].Symbol + " | ");
+                    else
+                        Console.Write("  | ");
                 }
                 
             }
@@ -103,8 +105,8 @@ namespace _029_Schach
         private string[,] ReadFile() {
             string temp;
             string[,] datatext = new string[8,8];
-
-            FileStream fs = new FileStream("init_defaultbrett.txt", FileMode.Open, FileAccess.Read);
+        
+            FileStream fs = new FileStream("../../../init_defaultbrett.txt", FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
             for (int i = 0; i < 8; i++) {

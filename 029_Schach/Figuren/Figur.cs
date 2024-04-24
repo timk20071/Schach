@@ -18,19 +18,24 @@ namespace _029_Schach.Figuren {
             }
         }
 
-        public bool Move(int currxpos,int currypos,int targetxpos,int targetypos,Figur[,] Brett) {
+        public bool Move(int currxpos,int currypos,int targetxpos,int targetypos,Figur[,]? Brett) {
             if (targetxpos <= 7 && targetxpos > 0 && targetypos <= 7 && targetypos > 0) { // Is position not out of range
                 Brett[currypos,currxpos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos);
                 if (IsColliding(currxpos,currypos,Brett)) {
-                    if (Brett[currypos,currxpos].IsWhite != Brett[targetypos,targetxpos].IsWhite) {
-                        Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
-                        Brett[currypos,currxpos] = null;
-                        return true;
+                    if(Brett[targetypos,targetxpos] != null) {
+                        if (Brett[currypos,currxpos].IsWhite == Brett[targetypos,targetxpos].IsWhite){
+                            return false;
+                        }
                     }
+                    Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
+                    Brett[currypos,currxpos] = null;
+
+                    return true;
                 }
                 else {
                     Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
                     Brett[currypos,currxpos] = null;
+
                     return true;
                 }
             }

@@ -1,21 +1,18 @@
-﻿namespace _029_Schach {
+﻿using _029_Schach.Figuren;
+
+namespace _029_Schach {
     internal class Program {
         static void Main(string[] args) {
           Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine('\u265E');
 
-            Spielbrett Brett = new Spielbrett();
-            Figur Spieler = new Figur(true, 'A');
-            Figur[,] Bretter = new Figur[8, 8];
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    Bretter[i, j] = Spieler;
-                }
-            }
+            Spielbrett spielbrett = new Spielbrett();
+            spielbrett.Print();
 
-            Brett.Print(Bretter);
+            Console.WriteLine(spielbrett.Brett[1,1].Move(1,1,3,1, spielbrett.Brett));
+
+            spielbrett.Print();
+
             Console.ReadKey();
         }
     }
