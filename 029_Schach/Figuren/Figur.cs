@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace _029_Schach {
     internal class Figur {
-        public bool IsWhite {get; set;}
-        public char Symbol {get; set;}
-        public Figur(bool iswhite, char symblowhite, char symbolblack) {
+        public bool IsWhite { get; set; }
+        public char Symbol { get; set; }
+        public Figur(bool iswhite,char symblowhite,char symbolblack) {
             IsWhite = iswhite;
             if (IsWhite) {
                 Symbol = symblowhite;
@@ -17,12 +17,12 @@ namespace _029_Schach {
                 Symbol = symbolblack;
             }
         }
-        
-        public bool Move(int currxpos, int currypos, int targetxpos, int targetypos, Figur[,] Brett) {
-            if(targetxpos <= 7 && targetxpos > 0 && targetypos <= 7 && targetypos > 0) { // Is position not out of range
-                Brett[currypos, currxpos].CheckIfMoveCorrect(currxpos, currypos, targetxpos, targetypos);
-                if(IsColliding(currxpos, currypos, Brett)) {
-                    if (Brett[currypos, currxpos].IsWhite != Brett[targetypos,targetxpos].IsWhite) {
+
+        public bool Move(int currxpos,int currypos,int targetxpos,int targetypos,Figur[,] Brett) {
+            if (targetxpos <= 7 && targetxpos > 0 && targetypos <= 7 && targetypos > 0) { // Is position not out of range
+                Brett[currypos,currxpos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos);
+                if (IsColliding(currxpos,currypos,Brett)) {
+                    if (Brett[currypos,currxpos].IsWhite != Brett[targetypos,targetxpos].IsWhite) {
                         Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
                         Brett[currypos,currxpos] = null;
                         return true;
@@ -34,12 +34,12 @@ namespace _029_Schach {
                     return true;
                 }
             }
-            
+
             return false;
         }
-        
-        public bool IsColliding(int xpos, int ypos,Figur[,] Brett) {
-            if (Brett[ypos, xpos] == null) {
+
+        public bool IsColliding(int xpos,int ypos,Figur[,] Brett) {
+            if (Brett[ypos,xpos] == null) {
                 return false;
             }
             return true;
@@ -48,4 +48,5 @@ namespace _029_Schach {
         public virtual bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
             return false;
         }
+    }
 }
