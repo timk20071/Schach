@@ -18,20 +18,23 @@ namespace _029_Schach {
             }
         }
         
-        public bool Move(int startxpos, int startypos, int destxpos, int destypos, Figur[,] Brett) {
-            // MoveValid()
-            if(IsColliding(startxpos, startypos, Brett)) {
-                if (Brett[startypos, startxpos].IsWhite != Brett[destypos,destxpos].IsWhite) {
-                    Brett[destypos,destxpos] = Brett[startypos,startxpos];
-                    Brett[startypos,startxpos] = null;
+        public bool Move(int currxpos, int currypos, int targetxpos, int targetypos, Figur[,] Brett) {
+            if(targetxpos <= 7 && targetxpos > 0 && targetypos <= 7 && targetypos > 0) { // Is position not out of range
+                Brett[currypos, currxpos].CheckIfMoveCorrect(currxpos, currypos, targetxpos, targetypos);
+                if(IsColliding(currxpos, currypos, Brett)) {
+                    if (Brett[currypos, currxpos].IsWhite != Brett[targetypos,targetxpos].IsWhite) {
+                        Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
+                        Brett[currypos,currxpos] = null;
+                        return true;
+                    }
+                }
+                else {
+                    Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
+                    Brett[currypos,currxpos] = null;
                     return true;
                 }
             }
-            else {
-                Brett[destypos,destxpos] = Brett[startypos,startxpos];
-                Brett[startypos,startxpos] = null;
-                return true;
-            }
+            
             return false;
         }
         
@@ -42,5 +45,7 @@ namespace _029_Schach {
             return true;
         }
 
-    }
+        public virtual bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
+            return false;
+        }
 }

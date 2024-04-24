@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 
 namespace _029_Schach {
     internal class Knight : Figur{
-        private char _symbolBlack = '\u265E';
-        private char _symbolWhite = '\u2658';
+        private static char _symbolBlack = '\u265E';
+        private static char _symbolWhite = '\u2658';
 
-        public Knight(bool iswhite) : base(iswhite,symblowhite: _symbolWhite,symbolblack: _symbolBlack) { }
+        public Knight(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
-        public bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
-
-            if (currxpos == currypos + 2) { }
-            return true;
+        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
+            if (currxpos == ( targetxpos + 2 ) && currypos == ( targetypos + 1 ) ||
+                currxpos == ( targetxpos - 2 ) && currypos == ( targetypos + 1 ) ||
+                currxpos == ( targetxpos + 2 ) && currypos == ( targetypos - 1 ) ||
+                currxpos == ( targetxpos - 2 ) && currypos == ( targetypos - 1 ) ||
+                currxpos == ( targetxpos + 1 ) && currypos == ( targetypos + 2 ) ||
+                currxpos == ( targetxpos - 1 ) && currypos == ( targetypos + 2 ) ||
+                currxpos == ( targetxpos + 1 ) && currypos == ( targetypos - 2 ) ||
+                currxpos == ( targetxpos - 1 ) && currypos == ( targetypos - 2 ) ){
+                return true;
+            }
+            return false;
         }
     }
 }
-
