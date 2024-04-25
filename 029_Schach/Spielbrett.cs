@@ -10,18 +10,19 @@ using _029_Schach.Figuren;
 namespace _029_Schach
 {
     internal class Spielbrett {
-        public Figur[,] Brett = new Figur[8, 8];
+        public Figur[,] Brett = new Figur[8, 8]; // [ypos,xpos]
         
         public Spielbrett() {
             Reset();
         }
-        public Figur[,] GetBrett() {
-            return Brett;
-        }
 
         public void Print() {
-            
+            Console.Write("\n  H   G   F   E   D   C   B   A  ");
             for (int i = 0; i < 8; i++) {
+                if (i != 0) {
+                    Console.Write(i);
+                }
+                    
                 Console.Write("\n---------------------------------\n| ");
                 for (int j = 0; j < 8; j++)
                 {
@@ -32,6 +33,7 @@ namespace _029_Schach
                 }
                 
             }
+            Console.Write(8);
             Console.WriteLine("\n---------------------------------");
         }
         /*     White | Black
