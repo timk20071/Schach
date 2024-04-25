@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace _029_Schach.Figuren {
     internal class Pawn : Figur {
+
         private static char _symbolBlack = '\u265F';
         private static char _symbolWhite = '\u2659';
         private bool _hasmoved = false;
