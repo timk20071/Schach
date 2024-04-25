@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using _029_Schach.Figuren;
 
@@ -117,6 +118,75 @@ namespace _029_Schach
             }
             fs.Close();
             return datatext;
+        }
+
+        public int[] Input()
+        {
+            int[] rtn = new int[4];
+            char[] input = new char[5];
+            Regex CheckFormat = new Regex(@"^[a-h][1-8]x[a-h][1-8]");
+
+            Console.WriteLine("Eingabe: ");
+            for (int i = 0; i < 5; i++)
+            {
+                input[i] = Convert.ToChar(Console.Read());
+            }
+            
+            
+            if (CheckFormat.IsMatch(input)) 
+            {
+                switch (input[0]) 
+                {
+                    case 'a':
+                        rtn[0] = 0; break;
+                    case 'b':
+                        rtn[0] = 1; break;
+                    case 'c':
+                        rtn[0] = 2; break;
+                    case 'd':
+                        rtn[0] = 3; break;
+                    case 'e':
+                        rtn[0] = 4; break;
+                    case 'f':
+                        rtn[0] = 5; break;
+                    case 'g':
+                        rtn[0] = 6; break;
+                    case 'h':
+                        rtn[0] = 7; break;   
+                }
+
+                rtn[1] = input[1] - 1;
+
+                switch (input[3]) 
+                {
+                    case 'a':
+                        rtn[2] = 0; break;
+                    case 'b':
+                        rtn[2] = 1; break;
+                    case 'c':
+                        rtn[2] = 2; break;
+                    case 'd':
+                        rtn[2] = 3; break;
+                    case 'e':
+                        rtn[2] = 4; break;
+                    case 'f':
+                        rtn[2] = 5; break;
+                    case 'g':
+                        rtn[2] = 6; break;
+                    case 'h':
+                        rtn[2] = 7; break;
+                }
+
+                rtn[3] = input[4] - 1;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Falsche Eingabe!");
+                Console.ResetColor();
+                Input();
+            }
+            return rtn;
         }
 
     }
