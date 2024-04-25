@@ -17,11 +17,9 @@ namespace _029_Schach
         }
 
         public void Print() {
-            Console.Write("\n  H   G   F   E   D   C   B   A  ");
-            for (int i = 0; i < 8; i++) {
-                if (i != 0) {
-                    Console.Write(i);
-                }
+            Console.Write("\n  A   B   C   D   E   F   G   H  ");
+            for (int i = 7; i >= 0; i--) {
+
                     
                 Console.Write("\n---------------------------------\n| ");
                 for (int j = 0; j < 8; j++)
@@ -31,9 +29,8 @@ namespace _029_Schach
                     else
                         Console.Write("  | ");
                 }
-                
+                Console.Write(i+1);
             }
-            Console.Write(8);
             Console.WriteLine("\n---------------------------------");
         }
         /*     White | Black
