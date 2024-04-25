@@ -7,13 +7,18 @@ namespace _029_Schach {
             Console.WriteLine('\u265E');
 
             Spielbrett spielbrett = new Spielbrett();
-            spielbrett.Print();
+            /*spielbrett.Print();
 
             Console.WriteLine(spielbrett.Brett[1,1].Move(1,1,3,1, spielbrett.Brett));
 
             spielbrett.Print();
 
-            Console.ReadKey();
+            Console.ReadKey();*/
+            foreach (int i in spielbrett.Input())
+            {
+                Console.WriteLine(i);
+            }
+            
         }
     }
 }
