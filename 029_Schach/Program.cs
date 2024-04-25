@@ -4,12 +4,15 @@ namespace _029_Schach {
     internal class Program {
         static void Main(string[] args) {
           Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine('\u265E');
 
             Spielbrett spielbrett = new Spielbrett();
             /*spielbrett.Print();
 
-            Console.WriteLine(spielbrett.Brett[1,1].Move(1,1,3,1, spielbrett.Brett));
+            Console.WriteLine(spielbrett.Brett[1,1].Move(1,2,3,2,spielbrett.Brett));
+            spielbrett.Print();
+            Console.WriteLine(spielbrett.Brett[1,1].Move(3,2,5,2,spielbrett.Brett));
+
+
 
             spielbrett.Print();
 
@@ -20,6 +23,8 @@ namespace _029_Schach {
             }
             
         }
+
+  
     }
 }
            
