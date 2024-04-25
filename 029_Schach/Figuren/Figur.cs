@@ -18,23 +18,23 @@ namespace _029_Schach.Figuren {
             }
         }
 
-        public bool Move(int currxpos,int currypos,int targetxpos,int targetypos,Figur[,]? Brett) {
-            if (targetxpos <= 7 && targetxpos > 0 && targetypos <= 7 && targetypos > 0) { // Is position not out of range
-                Brett[currypos,currxpos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos);
-                if (IsColliding(currxpos,currypos,Brett)) {
-                    if(Brett[targetypos,targetxpos] != null) {
-                        if (Brett[currypos,currxpos].IsWhite == Brett[targetypos,targetxpos].IsWhite){
+        public bool Move(int currypos,int currxpos,int targetypos,int targetxpos,Figur[,]? Brett) {
+            if (targetypos <= 7 && targetypos > 0 && targetxpos <= 7 && targetxpos > 0) { // Is position not out of range
+                Brett[currxpos,currypos].CheckIfMoveCorrect(currypos,currxpos,targetypos,targetxpos);
+                if (IsColliding(currypos,currxpos,Brett)) {
+                    if(Brett[targetxpos,targetypos] != null) {
+                        if (Brett[currxpos,currypos].IsWhite == Brett[targetxpos,targetypos].IsWhite){
                             return false;
                         }
                     }
-                    Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
-                    Brett[currypos,currxpos] = null;
+                    Brett[targetxpos,targetypos] = Brett[currxpos,currypos];
+                    Brett[currxpos,currypos] = null;
 
                     return true;
                 }
                 else {
-                    Brett[targetypos,targetxpos] = Brett[currypos,currxpos];
-                    Brett[currypos,currxpos] = null;
+                    Brett[targetxpos,targetypos] = Brett[currxpos,currypos];
+                    Brett[currxpos,currypos] = null;
 
                     return true;
                 }
