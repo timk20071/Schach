@@ -6,7 +6,7 @@ namespace _029_Schach {
           Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Spielbrett spielbrett = new Spielbrett();
-            /*spielbrett.Print();
+            spielbrett.Print();
 
             Console.WriteLine(spielbrett.Brett[1,1].Move(1,2,3,2,spielbrett.Brett));
             spielbrett.Print();
@@ -16,12 +16,8 @@ namespace _029_Schach {
 
             spielbrett.Print();
 
-            Console.ReadKey();*/
-            foreach (int i in spielbrett.Input())
-            {
-                Console.WriteLine(i);
-            }
-            //hello
+            Console.ReadKey();
+
         }
 
   
