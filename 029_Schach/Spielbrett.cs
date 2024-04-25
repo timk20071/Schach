@@ -155,7 +155,7 @@ namespace _029_Schach
                         rtn[0] = 7; break;   
                 }
 
-                rtn[1] = input[1] - 1;
+                rtn[1] = input[1] - '0' - 1;
 
                 switch (input[3]) 
                 {
@@ -177,7 +177,7 @@ namespace _029_Schach
                         rtn[2] = 7; break;
                 }
 
-                rtn[3] = input[4] - 1;
+                rtn[3] = input[4] - '0' - 1;
             }
             else
             {
