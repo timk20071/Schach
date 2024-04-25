@@ -13,12 +13,11 @@ namespace _029_Schach.Figuren {
         public Pawn(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
         public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
-            if ((currypos + 2) == targetypos && currxpos == targetxpos && _hasmoved == false ||
-                (currypos - 2) == targetypos && currxpos == targetxpos && _hasmoved == false) {
+            if ((Math.Abs(currypos - targetypos) == 2 && currxpos == targetxpos && _hasmoved == false)) {
                 _hasmoved = true;
                 return true;
             }
-            else if((currxpos + 1) == targetxpos && currypos == targetypos) {
+            else if(Math.Abs(currypos - targetypos) == 1 && currxpos == targetxpos) {
                 _hasmoved = true;
                 return true;
             }

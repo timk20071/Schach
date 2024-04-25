@@ -20,7 +20,10 @@ namespace _029_Schach.Figuren {
 
         public bool Move(int currypos,int currxpos,int targetypos,int targetxpos,Figur[,]? Brett) {
             if (targetypos <= 7 && targetypos > 0 && targetxpos <= 7 && targetxpos > 0) { // Is position not out of range
-                Brett[currxpos,currypos].CheckIfMoveCorrect(currypos,currxpos,targetypos,targetxpos);
+                if (!( Brett[currxpos,currypos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos) )) {
+                    return false;
+                }
+                
                 if (IsColliding(currypos,currxpos,Brett)) {
                     if(Brett[targetxpos,targetypos] != null) {
                         if (Brett[currxpos,currypos].IsWhite == Brett[targetxpos,targetypos].IsWhite){

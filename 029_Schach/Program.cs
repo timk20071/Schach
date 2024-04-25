@@ -8,7 +8,11 @@ namespace _029_Schach {
             Spielbrett spielbrett = new Spielbrett();
             spielbrett.Print();
 
-            Console.WriteLine(spielbrett.Brett[1,1].Move(1,1,4,1,spielbrett.Brett));
+            Console.WriteLine(spielbrett.Brett[1,1].Move(1,2,3,2,spielbrett.Brett));
+            spielbrett.Print();
+            Console.WriteLine(spielbrett.Brett[1,1].Move(3,2,5,2,spielbrett.Brett));
+
+
 
             spielbrett.Print();
 
