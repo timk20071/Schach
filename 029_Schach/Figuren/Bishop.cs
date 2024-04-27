@@ -28,7 +28,7 @@ namespace _029_Schach.Figuren {
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.brett[input[1] + i, input[0] + i)//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[1] + i, input[0] + i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;
@@ -39,7 +39,7 @@ namespace _029_Schach.Figuren {
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.brett[input[1] + i, input[0] - i)//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[1] + i, input[0] - i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;
@@ -50,7 +50,7 @@ namespace _029_Schach.Figuren {
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.brett[input[1] - i, input[0] - i)//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[1] - i, input[0] - i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;
@@ -61,7 +61,7 @@ namespace _029_Schach.Figuren {
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.brett[input[1] - i, input[0] + i)//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[1] - i, input[0] + i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;
