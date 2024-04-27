@@ -46,7 +46,7 @@ namespace _029_Schach.Figuren {
                         return pathIsClear;
                     }
                 }
-            }else if (input[1] == input[3] && input[0] < input[2])//check if rook is going right 
+            }else if (input[1] == input[3] && input[0] < input[2])//check if queen is going right 
             {
                 for (int i = 0; i < (input[2] - input[0]); i++)//calculates how many fields the queen has to go
                 {
@@ -57,7 +57,7 @@ namespace _029_Schach.Figuren {
                     }
                 }
             }
-            else if (input[1] == input[3] && input[0] > input[2])//check if rook is going left
+            else if (input[1] == input[3] && input[0] > input[2])//check if queen is going left
             {
                 for (int i = 0; i < (input[0] - input[2]); i++)//calculates how many fields the queen has to go
                 {
@@ -67,44 +67,44 @@ namespace _029_Schach.Figuren {
                         return pathIsClear;
                     }
                 }
-            }else if (input[1] < input[3] && input[0] < input[2])//check if pawn is moving right up
+            }else if (input[1] < input[3] && input[0] < input[2])//check if queen is moving right up
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the queen has to go
                 {
-                    if (null != spielbrett.brett[input[1] + i, input[0] + i)//check if something is the path of the bishop
+                    if (null != spielbrett.brett[input[1] + i, input[0] + i)//check if the path is free
                     {
                         pathIsClear = false;
                         return pathIsClear;
                     }
                 }
             }
-            else if (input[1] < input[3] && input[0] > input[2])//check if pawn is moving left up
+            else if (input[1] < input[3] && input[0] > input[2])//check if queen is moving left up
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the queen has to go
                 {
-                    if (null != spielbrett.brett[input[1] + i, input[0] - i)//check if something is the path of the bishop
+                    if (null != spielbrett.brett[input[1] + i, input[0] - i)//check if the path is free
                     {
                         pathIsClear = false;
                         return pathIsClear;
                     }
                 }
             }
-            else if (input[1] > input[3] && input[0] > input[2])//check if pawn is moving left down
+            else if (input[1] > input[3] && input[0] > input[2])//check if queen is moving left down
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the queen has to go
                 {
-                    if (null != spielbrett.brett[input[1] - i, input[0] - i)//check if something is the path of the bishop
+                    if (null != spielbrett.brett[input[1] - i, input[0] - i)//check if the path is free
                     {
                         pathIsClear = false;
                         return pathIsClear;
                     }
                 }
             }
-            else if (input[1] > input[3] && input[0] < input[2])//check if pawn is moving right down
+            else if (input[1] > input[3] && input[0] < input[2])//check if queen is moving right down
             {
                 for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the queen has to go
                 {
-                    if (null != spielbrett.brett[input[1] - i, input[0] + i)//check if something is the path of the bishop
+                    if (null != spielbrett.brett[input[1] - i, input[0] + i)//check if the path is free
                     {
                         pathIsClear = false;
                         return pathIsClear;

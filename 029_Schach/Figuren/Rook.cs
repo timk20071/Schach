@@ -24,54 +24,47 @@ namespace _029_Schach.Figuren {
         {
             bool pathIsClear = true;
 
-            if (input[0] != input[2])//ckeck if rook is going down or up
+            if (input[1] < input[3] && input[0] == input[2])//check if rook is going up 
             {
-                if (input[0] < input[2])//check if rook is going up 
+                for (int i = 0; i < (input[3] - input[1]); i++)//calculates how many fields the rook has to go
                 {
-                    for (int i = 0; i < (input[2] - input[0]); i++)//goes thrue all the way up
+                    if (null != spielbrett.Brett[input[1] + i, input[0]])//check if the path is free
                     {
-                        if (null != spielbrett.Brett[input[1] + i, input[0]])//check if the path is free
-                        {
-                            pathIsClear = false;
-                            return pathIsClear;
-                        }
+                        pathIsClear = false;
+                        return pathIsClear;
                     }
                 }
-                else if (input[0] > input[2])//check if rook is going down
-                {
-                    for (int i = 0; i < (input[0] - input[2]); i++)//goes thrue all the way up
-                    {
-                        if (null != spielbrett.Brett[input[1] - i, input[0]])//check if the path is free
-                        {
-                            pathIsClear = false;
-                            return pathIsClear;
-                        }
-                    }
-                }
-
             }
-            else if (input[1] != input[3])//check if rook is going right or left
+            else if (input[1] > input[3] && input[0] == input[2])//check if rook is going down
             {
-                if (input[1] < input[3])//check if rook is going right 
+                for (int i = 0; i < (input[1] - input[3]); i++)//calculates how many fields the rook has to go
                 {
-                    for (int i = 0; i < (input[3] - input[1]); i++)//goes thrue all the way to the right
+                    if (null != spielbrett.Brett[input[1] - i, input[0]])//check if the path is free
                     {
-                        if (null != spielbrett.Brett[input[1], input[0] + i])//check if the path is free
-                        {
-                            pathIsClear = false;
-                            return pathIsClear;
-                        }
+                        pathIsClear = false;
+                        return pathIsClear;
                     }
                 }
-                else if (input[1] > input[3])//check if rook is going left
+            }
+            else if (input[1] == input[3] && input[0] < input[2])//check if rook is going right 
+            {
+                for (int i = 0; i < (input[2] - input[0]); i++)//calculates how many fields the rook has to go
                 {
-                    for (int i = 0; i < (input[0] - input[2]); i++)//goes thrue all the way to the left
+                    if (null != spielbrett.Brett[input[1], input[0] + i])//check if the path is free
                     {
-                        if (null != spielbrett.Brett[input[1], input[0] - i])//check if the path is free
-                        {
-                            pathIsClear = false;
-                            return pathIsClear;
-                        }
+                        pathIsClear = false;
+                        return pathIsClear;
+                    }
+                }
+            }
+            else if (input[1] == input[3] && input[0] > input[2])//check if rook is going left
+            {
+                for (int i = 0; i < (input[0] - input[2]); i++)//calculates how many fields the rook has to go
+                {
+                    if (null != spielbrett.Brett[input[1], input[0] - i])//check if the path is free
+                    {
+                        pathIsClear = false;
+                        return pathIsClear;
                     }
                 }
             }
