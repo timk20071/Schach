@@ -10,7 +10,7 @@ using _029_Schach.Figuren;
 namespace _029_Schach
 {
     internal class Spielbrett {
-        public Figur[,] Brett = new Figur[8, 8]; // [ypos,xpos]
+        public Figur[,] Brett = new Figur[8, 8]; //[ypos,xpos]
         
         public Spielbrett() {
             Reset();
