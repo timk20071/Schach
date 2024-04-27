@@ -33,7 +33,7 @@ namespace _029_Schach.Figuren {
             {
                 for (int i = 0; i < input[1] - input[3]; i++)//moves forward
                 {
-                    if (null != spielbrett.brett[input[1] + i, input[0])//check if something is infront of the pawn
+                    if (null != spielbrett.Brett[input[1] + i, input[0]])//check if something is infront of the pawn
                     {
                         pathIsClear = false;
                         return pathIsClear;
@@ -43,7 +43,7 @@ namespace _029_Schach.Figuren {
             {
                 for (int i = 0; i < input[1] - input[3]; i++)//moves downwards
                 {
-                    if (null != spielbrett.brett[input[1] - i, input[0])//check if something is infront of the pawn
+                    if (null != spielbrett.Brett[input[1] - i, input[0]])//check if something is infront of the pawn
                     {
                         pathIsClear = false;
                         return pathIsClear;
