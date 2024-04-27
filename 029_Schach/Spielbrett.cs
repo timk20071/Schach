@@ -17,11 +17,10 @@ namespace _029_Schach
         }
 
         public void Print() {
-            Console.Write("\n  A   B   C   D   E   F   G   H  ");
+            
             for (int i = 7; i >= 0; i--) {
-
-                    
-                Console.Write("\n---------------------------------\n| ");
+                //Console.Write(i + 1);
+                Console.Write("\n ---------------------------------\n" + (i + 1) +"| ");            
                 for (int j = 0; j < 8; j++)
                 {
                     if (Brett[j, i] != null)
@@ -29,9 +28,10 @@ namespace _029_Schach
                     else
                         Console.Write("  | ");
                 }
-                Console.Write(i+1);
+                
             }
-            Console.WriteLine("\n---------------------------------");
+            Console.Write("\n ---------------------------------");
+            Console.WriteLine("\n   A   B   C   D   E   F   G   H  ");
         }
         /*     White | Black
          * Pawn:   P | p
@@ -121,17 +121,22 @@ namespace _029_Schach
 
         public int[] Input()
         {
+            int i = 0;
             int[] rtn = new int[4];
             char[] input = new char[5];
-            Regex CheckFormat = new Regex(@"^[a-h][1-8]x[a-h][1-8]");
+            Regex CheckFormat = new Regex(@"^[a-hA-H][1-8]x[a-hA-H][1-8]");
 
             Console.WriteLine("Eingabe: ");
-            for (int i = 0; i < 5; i++)
+            string inputString = Console.ReadLine();
+
+            
+            foreach (char c in inputString)
             {
-                input[i] = Convert.ToChar(Console.Read());
+                input[i] = c;
+                i++;
             }
-            
-            
+
+
             if (CheckFormat.IsMatch(input)) 
             {
                 switch (input[0]) 

@@ -13,16 +13,17 @@ namespace _029_Schach.Figuren {
 
         public Bishop(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
+        public override bool CheckIfMoveCorrect(int currxpos, int currypos, int targetxpos, int targetypos) {
             if (Math.Abs(currxpos - targetxpos) == Math.Abs(currypos - targetypos)) {
                 return true;
             }
             return false;
         }
 
-        public bool CheckIfPathIsClear(int[] input, Spielbrett spielbrett)
+        public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
         {
             bool pathIsClear = true;
+            int[] input = { currxpos, currypos, targetxpos, targetypos };
 
             if (input[1] < input[3] && input[0] < input[2])//check if pawn is moving right up
             {

@@ -25,13 +25,14 @@ namespace _029_Schach.Figuren {
             return false;
         }
 
-        public bool CheckIfPathIsClear(int[] input, Spielbrett spielbrett)
+        public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
         {
             bool pathIsClear = true;
+            int[] input = { currxpos, currypos, targetxpos, targetypos};
 
             if (input[1] < input[3] && input[0] == input[2])//check if pawn is moving up
             {
-                for (int i = 0; i < input[1] - input[3]; i++)//moves forward
+                for (int i = 0; i < (input[3] - input[1]); i++)//moves forward
                 {
                     if (null != spielbrett.Brett[input[1] + i, input[0]])//check if something is infront of the pawn
                     {
@@ -41,7 +42,7 @@ namespace _029_Schach.Figuren {
                 }
             }else if (input[1] > input[3] && input[0] == input[2])//check if pawn is moving down
             {
-                for (int i = 0; i < input[1] - input[3]; i++)//moves downwards
+                for (int i = 0; i < (input[1] - input[3]); i++)//moves downwards
                 {
                     if (null != spielbrett.Brett[input[1] - i, input[0]])//check if something is infront of the pawn
                     {

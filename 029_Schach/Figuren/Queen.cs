@@ -19,10 +19,10 @@ namespace _029_Schach.Figuren {
             return false;
         }
 
-        public bool CheckIfPathIsClear(int[] input, Spielbrett spielbrett)
+        public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
         {
             bool pathIsClear = true;
-
+            int[] input = { currxpos, currypos, targetxpos, targetypos };
 
 
             if (input[1] < input[3] && input[0] == input[2])//check if queen is going up 
