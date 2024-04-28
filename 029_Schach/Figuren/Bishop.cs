@@ -27,9 +27,9 @@ namespace _029_Schach.Figuren {
 
             if (input[1] < input[3] && input[0] < input[2])//check if pawn is moving right up
             {
-                for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
+                for (int i = 1; i <= Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.Brett[input[1] + i, input[0] + i])//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[0] + i, input[1] + i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;
@@ -38,9 +38,9 @@ namespace _029_Schach.Figuren {
             }
             else if (input[1] < input[3] && input[0] > input[2])//check if pawn is moving left up
             {
-                for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
+                for (int i = 1; i <= Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.Brett[input[1] + i, input[0] - i])//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[0] - i, input[1] + i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;
@@ -49,9 +49,9 @@ namespace _029_Schach.Figuren {
             }
             else if (input[1] > input[3] && input[0] > input[2])//check if pawn is moving left down
             {
-                for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
+                for (int i = 1; i <= Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.Brett[input[1] - i, input[0] - i])//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[0] - i, input[1] - i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;
@@ -60,9 +60,9 @@ namespace _029_Schach.Figuren {
             }
             else if (input[1] > input[3] && input[0] < input[2])//check if pawn is moving right down
             {
-                for (int i = 0; i < Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
+                for (int i = 1; i <= Math.Abs(input[1] - input[3]); i++)//calculates how many fields the bishop has to go
                 {
-                    if (null != spielbrett.Brett[input[1] - i, input[0] + i])//check if something is the path of the bishop
+                    if (null != spielbrett.Brett[input[0] + i, input[1] - i])//check if something is the path of the bishop
                     {
                         pathIsClear = false;
                         return pathIsClear;

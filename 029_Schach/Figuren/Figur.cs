@@ -27,11 +27,12 @@ namespace _029_Schach.Figuren {
                     throw new Exception("Der von Ihnen einegebener Zug ist führ diese Figur nicht zulässig! Bitte geben Sie erneut ein");
                 }
 
-                if (figur.CheckIfPathIsClear(currxpos, currypos, targetxpos, targetypos, spielbrett))
+                if (!figur.CheckIfPathIsClear(currxpos, currypos, targetxpos, targetypos, spielbrett))
                 {
                     if (figur.CheckCollision(currxpos, currypos, targetxpos, targetypos, figur, spielbrett))
                     {
                         Capture(currxpos, currypos, targetxpos, targetypos, spielbrett);
+                        return;
                     }
                     else
                     {
@@ -64,7 +65,7 @@ namespace _029_Schach.Figuren {
 
             bool CheckColliding = false;
 
-            if (null != spielbrett.Brett[targetypos, targetxpos] && figur.IsWhite != spielbrett.Brett[targetypos,targetxpos].IsWhite)
+            if (null != spielbrett.Brett[targetxpos, targetypos] && figur.IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite)
             {
                 CheckColliding = true;
             }

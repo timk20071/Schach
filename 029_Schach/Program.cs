@@ -6,15 +6,16 @@ namespace _029_Schach {
           Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Spielbrett spielbrett = new Spielbrett();
-            int[] inputData = new int[4]; 
-            
+            int[] inputData = new int[4];
+            Figur figur;
 
 
             while (true) 
             {
                 spielbrett.Print();
                 inputData = spielbrett.Input();
-                spielbrett.Brett[inputData[1], inputData[0]].Move(inputData[0], inputData[1], inputData[2], inputData[3], spielbrett.Brett[inputData[0], inputData[1]], spielbrett); ;
+                figur = spielbrett.Brett[inputData[0], inputData[1]];
+                figur.Move(inputData[0], inputData[1], inputData[2], inputData[3], figur, spielbrett);
             }
 
         }

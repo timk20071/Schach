@@ -19,7 +19,6 @@ namespace _029_Schach
         public void Print() {
             
             for (int i = 7; i >= 0; i--) {
-                //Console.Write(i + 1);
                 Console.Write("\n ---------------------------------\n" + (i + 1) +"| ");            
                 for (int j = 0; j < 8; j++)
                 {
@@ -40,7 +39,7 @@ namespace _029_Schach
          * Rook:   R | r
          * Bishop: B | b
          * Knight: N | n 
-         * Empty:  e
+         * Empty:    e
           
          r n b q k b n r
          p p p p p p p p
@@ -55,47 +54,50 @@ namespace _029_Schach
             string[,] data = ReadFile();
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++){
-                    switch (data[j,i]) {
+                    switch (data[i,j]) {
                         // Black pieces
                         case "p":
-                            Brett[j,i] = new Pawn(false);
+                            Brett[i,j] = new Pawn(false);
                             break;
                         case "k":
-                            Brett[j,i] = new King(false);
+                            Brett[i,j] = new King(false);
                             break;
                         case "q":
-                            Brett[j,i] = new Queen(false);
+                            Brett[i, j] = new Queen(false);
                             break;
                         case "r":
-                            Brett[j,i] = new Rook(false);
+                            Brett[i, j] = new Rook(false);
                             break;
                         case "b":
-                            Brett[j,i] = new Bishop(false);
+                            Brett[i, j] = new Bishop(false);
                             break;
                         case "n":
-                            Brett[j,i] = new Knight(false);
+                            Brett[i, j] = new Knight(false);
                             break;
                         // White pieces
                         case "P":
-                            Brett[j,i] = new Pawn(true);
+                            Brett[i, j] = new Pawn(true);
                             break;
                         case "K":
-                            Brett[j,i] = new King(true);
+                            Brett[i, j] = new King(true);
                             break;
                         case "Q":
-                            Brett[j,i] = new Queen(true);
+                            Brett[i, j] = new Queen(true);
                             break;
                         case "R":
-                            Brett[j,i] = new Rook(true);
+                            Brett[i, j] = new Rook(true);
                             break;
                         case "B":
-                            Brett[j,i] = new Bishop(true);
+                            Brett[i, j] = new Bishop(true);
                             break;
                         case "N":
-                            Brett[j,i] = new Knight(true);
+                            Brett[i, j] = new Knight(true);
+                            break;
+                        case "e":
+                            Brett[i, j] = null;
                             break;
                         default:
-                            Brett[j,i] = null;
+                            Brett[i, j] = null;
                             break;
                     }
                 }
@@ -129,17 +131,16 @@ namespace _029_Schach
             Console.WriteLine("Eingabe: ");
             string inputString = Console.ReadLine();
 
-            
-            foreach (char c in inputString)
-            {
-                input[i] = c;
-                i++;
-            }
 
-
-            if (CheckFormat.IsMatch(input)) 
+            if (CheckFormat.IsMatch(inputString)) 
             {
-                switch (input[0]) 
+                foreach (char c in inputString)
+                {
+                    input[i] = c;
+                    i++;
+                }
+
+                switch (input[0]) //converts the coordinates to int numbers
                 {
                     case 'a':
                         rtn[0] = 0; break;
@@ -161,7 +162,7 @@ namespace _029_Schach
 
                 rtn[1] = input[1] - '0' - 1;
 
-                switch (input[3]) 
+                switch (input[3]) //converts the coordinates to int numbers
                 {
                     case 'a':
                         rtn[2] = 0; break;
