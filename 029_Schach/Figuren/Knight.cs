@@ -24,5 +24,17 @@ namespace _029_Schach.Figuren {
             }
             return false;
         }
+
+        public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
+        {
+            if (null == spielbrett.Brett[targetxpos, targetypos])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
+        }
     }
 }
