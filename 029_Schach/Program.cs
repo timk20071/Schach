@@ -4,7 +4,8 @@ namespace _029_Schach {
     internal class Program {
         static void Main(string[] args) {
           Console.OutputEncoding = System.Text.Encoding.UTF8;
-
+            TCP_Server tcpserver = new TCP_Server();
+            /*
             Spielbrett spielbrett = new Spielbrett();
             spielbrett.Print();
 
@@ -17,7 +18,7 @@ namespace _029_Schach {
             spielbrett.Print();
 
             Console.ReadKey();
-
+            */
         }
 
   
