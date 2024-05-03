@@ -12,7 +12,7 @@ namespace _029_Schach.Figuren {
 
         public Queen(bool iswhite) : base(iswhite, _symbolWhite, _symbolBlack) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos, int currypos, int targetxpos, int targetypos) {
+        public override bool CheckIfMoveCorrect(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
             if (Math.Abs(currxpos - targetxpos) == Math.Abs(currypos - targetypos) || (currxpos == targetxpos || currypos == targetypos)) {
                 return true;
             }
