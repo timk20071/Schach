@@ -13,7 +13,7 @@ namespace _029_Schach.Figuren {
 
         public Rook(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
+        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             if (currxpos == targetxpos || currypos == targetypos) { 
                 return true;
             }

@@ -13,7 +13,7 @@ namespace _029_Schach.Figuren {
 
         public King(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
+        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             if (((currxpos - targetxpos)== 1 || (currxpos - targetxpos) == -1 || currxpos == targetxpos) &&
                 ((currypos - targetypos)== 1 || (currypos - targetypos) == -1 || currypos == targetypos) &&
                 ((currxpos - targetxpos)!= 0 || (currypos - targetypos) != 0)) {

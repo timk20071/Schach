@@ -13,16 +13,23 @@ namespace _029_Schach.Figuren {
 
         public Pawn(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
-            if ((Math.Abs(currypos - targetypos) == 2 && currxpos == targetxpos && _hasmoved == false)) {
+        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
+            if ((Math.Abs(currypos - targetypos) == 2 && currxpos == targetxpos && _hasmoved == false))
+            {
                 _hasmoved = true;
                 return true;
             }
-            else if(Math.Abs(currypos - targetypos) == 1 && currxpos == targetxpos) {
+            else if (Math.Abs(currypos - targetypos) == 1 && currxpos == targetxpos)
+            {
                 _hasmoved = true;
                 return true;
             }
-            return false;
+            else if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 1 && null != spielbrett.Brett[targetxpos, targetypos])
+            {
+                _hasmoved = true;
+                return true;
+            }
+                return false;
         }
 
         public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)

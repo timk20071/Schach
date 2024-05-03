@@ -10,7 +10,7 @@ using _029_Schach.Figuren;
 namespace _029_Schach
 {
     internal class Spielbrett {
-        public Figur[,] Brett = new Figur[8, 8]; //[ypos,xpos]
+        public Figur[,] Brett = new Figur[8, 8]; //[xpos,ypos]
         
         public Spielbrett() {
             Reset();
@@ -19,7 +19,7 @@ namespace _029_Schach
         public void Print() {
             
             for (int i = 7; i >= 0; i--) {
-                Console.Write("\n ---------------------------------\n" + (i + 1) +"| ");            
+                Console.Write("\n ---------------------------------\n" + (i + 1) +"| ");          
                 for (int j = 0; j < 8; j++)
                 {
                     if (Brett[j, i] != null)
