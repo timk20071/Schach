@@ -8,6 +8,7 @@ namespace _029_Schach {
     internal class TCP_Server {
         private TcpListener _tcplistener;
         private bool isFinished = false;
+        bool turnforwhite = true;
         int counter = 0;
         Spielbrett spielbrett;
         TcpClient client_w;
@@ -22,29 +23,58 @@ namespace _029_Schach {
         public TCP_Server(bool loadpreviousgame) {
             StartServer("127.0.0.1", 1111);
             ConnectClients();
-            StartGame(loadpreviousgame);
+            StartOrLoadGame(loadpreviousgame);
+            OutputGameState();
             
         }
         
-        public void StartServer(string ip, int port) {
+        private void StartServer(string ip, int port) {
             _tcplistener = new TcpListener(IPAddress.Parse(ip), port); // Tcp Server
             _tcplistener.Start();
             Console.WriteLine($"Listening at {ip} on port {port}");
             
         }
 
-        public void ConnectClients() {
+        private void ConnectClients() {
             client_w = _tcplistener.AcceptTcpClient(); // Wartet so lange, bis weißer client auf server joint
             client_b = _tcplistener.AcceptTcpClient(); // Wartet so lange, bis schwarzer client auf server joint
+            stream_w = client_w.GetStream();
+            stream_b = client_b.GetStream();
         }
 
-        public void StartGame(bool loadpreviousgame) {
+        private void StartOrLoadGame(bool loadpreviousgame) {
             if (loadpreviousgame) {
                 // Wenn Spielstand vorhanden && eingabe mit welcher Spielstand gespielt werden sollte
             }
             else {
                 spielbrett = new Spielbrett();
             }
+        }
+
+        public void OutputGameState() {
+            stream_w.Write(spielbrett.PrintWhite());
+            stream_b.Write(spielbrett.PrintBlack());
+        }
+
+        public void Move() {
+            int[] input = new int[4];
+            NetworkStream movingstream;
+            NetworkStream notmovingstream;
+            if (turnforwhite) {
+                movingstream = stream_w;
+                notmovingstream = stream_b;
+            }
+            else {
+                movingstream = stream_b;
+                notmovingstream = stream_w;
+            }
+            input = spielbrett.Input_MoveServer(turnforwhite, movingstream);
+
+            turnforwhite = !turnforwhite;
+
+            Console.WriteLine(spielbrett.Brett[0,0].Move(input[1],input[0],input[3],input[2], spielbrett.Brett));
+
+            OutputGameState();
         }
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using _029_Schach.Figuren;
 
 namespace _029_Schach
@@ -16,22 +12,42 @@ namespace _029_Schach
             Reset();
         }
 
-        public void Print() {
-            Console.Write("\n  A   B   C   D   E   F   G   H  ");
+        public byte[] PrintWhite() {
+            string str = "";
+            
             for (int i = 7; i >= 0; i--) {
 
-                    
-                Console.Write("\n---------------------------------\n| ");
-                for (int j = 0; j < 8; j++)
-                {
-                    if (Brett[j, i] != null)
-                        Console.Write(Brett[j, i].Symbol + " | ");
+
+                str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i+1} | ";
+                for (int j = 0; j < 8; j++) {
+                    if (Brett[j,i] != null)
+                        str += (Brett[j,i].Symbol + " | ");
                     else
-                        Console.Write("  | ");
+                        str += "  | ";
                 }
-                Console.Write(i+1);
             }
-            Console.WriteLine("\n---------------------------------");
+            str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
+            str += $"{Environment.NewLine}    A   B   C   D   E   F   G   H{Environment.NewLine}";
+            return Encoding.UTF8.GetBytes(str);
+        }
+
+        public byte[] PrintBlack() {
+            string str = "";
+
+            for (int i = 0; i <= 7; i++) {
+
+
+                str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i + 1} | ";
+                for (int j = 0; j < 8; j++) {
+                    if (Brett[j,i] != null)
+                        str += ( Brett[j,i].Symbol + " | " );
+                    else
+                        str += "  | ";
+                }
+            }
+            str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
+            str += $"{Environment.NewLine}    A   B   C   D   E   F   G   H{Environment.NewLine}";
+            return Encoding.UTF8.GetBytes(str);
         }
         /*     White | Black
          * Pawn:   P | p
@@ -118,24 +134,34 @@ namespace _029_Schach
             fs.Close();
             return datatext;
         }
-
-        public int[] Input()
-        {
-            int[] rtn = new int[4];
+        public int[] Input_MoveConsole() {
             char[] input = new char[5];
-            Regex CheckFormat = new Regex(@"^[a-h][1-8]x[a-h][1-8]");
-
             Console.WriteLine("Eingabe: ");
-            for (int i = 0; i < 5; i++)
-            {
+            for (int i = 0; i < 5; i++) {
                 input[i] = Convert.ToChar(Console.Read());
             }
+            return ConvertInput(input, true, null, true); // null and true = placeholder
+        }
+
+        public int[] Input_MoveServer(bool turnforwhite, NetworkStream client) {
+            byte[] inputbuffer = new byte[5];
+            char[] input = new char[5];
+            client.Write(Encoding.UTF8.GetBytes("Dein Zug (startpos+x+zielpos):"));
+            client.Read(inputbuffer,0,5);
+            for (int i = 0; i < 5; i++) {
+                input[i] = (char)inputbuffer[i];
+            }
+            return ConvertInput(input, false, client, turnforwhite);
+        }
+
+        public int[] ConvertInput(char[] input, bool fromconsole, NetworkStream? client, bool turnforwhite) {
+            int[] rtn = new int[4];
+            Regex CheckFormat = new Regex(@"^[a-h][1-8]x[a-h][1-8]");
+
+
             
-            
-            if (CheckFormat.IsMatch(input)) 
-            {
-                switch (input[0]) 
-                {
+            if (CheckFormat.IsMatch(input)) {
+                switch (input[0]) {
                     case 'a':
                         rtn[0] = 0; break;
                     case 'b':
@@ -156,8 +182,7 @@ namespace _029_Schach
 
                 rtn[1] = input[1] - '0' - 1;
 
-                switch (input[3]) 
-                {
+                switch (input[3]) {
                     case 'a':
                         rtn[2] = 0; break;
                     case 'b':
@@ -178,15 +203,17 @@ namespace _029_Schach
 
                 rtn[3] = input[4] - '0' - 1;
             }
-            else
-            {
+            else if(!CheckFormat.IsMatch(input) && fromconsole) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Falsche Eingabe!");
                 Console.ResetColor();
-                Input();
+                Input_MoveConsole();
+            }
+            else if (!CheckFormat.IsMatch(input) && !fromconsole) {
+                client.Write(Encoding.UTF8.GetBytes("Falsche Eingabe!\n"));
+                Input_MoveServer(turnforwhite, client);
             }
             return rtn;
         }
-
     }
 }

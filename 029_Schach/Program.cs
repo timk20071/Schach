@@ -4,7 +4,11 @@ namespace _029_Schach {
     internal class Program {
         static void Main(string[] args) {
           Console.OutputEncoding = System.Text.Encoding.UTF8;
-            TCP_Server tcpserver = new TCP_Server();
+            TCP_Server tcp_tcpserver = new TCP_Server(false);
+
+            while (true) {
+                    tcp_tcpserver.Move();
+            }
             /*
             Spielbrett spielbrett = new Spielbrett();
             spielbrett.Print();

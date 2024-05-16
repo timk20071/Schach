@@ -19,7 +19,7 @@ namespace _029_Schach.Figuren {
         }
 
         public bool Move(int currypos,int currxpos,int targetypos,int targetxpos,Figur[,]? Brett) {
-            if (targetypos <= 7 && targetypos > 0 && targetxpos <= 7 && targetxpos > 0) { // Is position not out of range
+            if (targetypos <= 7 && targetypos >= 0 && targetxpos <= 7 && targetxpos >= 0) { // Is position not out of range
                 if (!( Brett[currxpos,currypos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos) )) {
                     return false;
                 }
