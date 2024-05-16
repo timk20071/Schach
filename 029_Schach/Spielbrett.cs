@@ -148,7 +148,7 @@ namespace _029_Schach {
             byte[] inputbuffer = new byte[5];
             char[] input = new char[5];
             client.Write(Encoding.UTF8.GetBytes("Dein Zug (startpos+x+zielpos):"));
-            client.Read(inputbuffer,0,5);
+            client.Read(inputbuffer, 0, 5);
             for (int i = 0; i < 5; i++) {
                 input[i] = (char)inputbuffer[i];
             }
@@ -179,7 +179,7 @@ namespace _029_Schach {
                     case 'g':
                         rtn[0] = 6; break;
                     case 'h':
-                        rtn[0] = 7; break;   
+                        rtn[0] = 7; break;
                 }
 
                 rtn[1] = input[1] - '0' - 1;
