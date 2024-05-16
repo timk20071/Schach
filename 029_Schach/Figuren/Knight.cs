@@ -11,7 +11,7 @@ namespace _029_Schach.Figuren {
 
         public Knight(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
+        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             if (currxpos == ( targetxpos + 2 ) && currypos == ( targetypos + 1 ) ||
                 currxpos == ( targetxpos - 2 ) && currypos == ( targetypos + 1 ) ||
                 currxpos == ( targetxpos + 2 ) && currypos == ( targetypos - 1 ) ||
@@ -23,6 +23,18 @@ namespace _029_Schach.Figuren {
                 return true;
             }
             return false;
+        }
+
+        public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
+        {
+            if (null == spielbrett.Brett[targetxpos, targetypos])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
     }
 }

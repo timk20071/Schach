@@ -1,4 +1,4 @@
-﻿using System.Net.Sockets;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using _029_Schach.Figuren;
@@ -6,7 +6,7 @@ using _029_Schach.Figuren;
 namespace _029_Schach
 {
     internal class Spielbrett {
-        public Figur[,] Brett = new Figur[8, 8]; // [ypos,xpos]
+        public Figur[,] Brett = new Figur[8, 8]; //[xpos,ypos]
         
         public Spielbrett() {
             Reset();
@@ -47,7 +47,10 @@ namespace _029_Schach
             }
             str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
             str += $"{Environment.NewLine}    A   B   C   D   E   F   G   H{Environment.NewLine}";
-            return Encoding.UTF8.GetBytes(str);
+            return Encoding.UTF8.GetBytes(str);                
+            }
+            Console.Write("\n ---------------------------------");
+            Console.WriteLine("\n   A   B   C   D   E   F   G   H  ");
         }
         /*     White | Black
          * Pawn:   P | p
@@ -56,7 +59,7 @@ namespace _029_Schach
          * Rook:   R | r
          * Bishop: B | b
          * Knight: N | n 
-         * Empty:  e
+         * Empty:    e
           
          r n b q k b n r
          p p p p p p p p
@@ -71,47 +74,50 @@ namespace _029_Schach
             string[,] data = ReadFile();
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++){
-                    switch (data[j,i]) {
+                    switch (data[i,j]) {
                         // Black pieces
                         case "p":
-                            Brett[j,i] = new Pawn(false);
+                            Brett[i,j] = new Pawn(false);
                             break;
                         case "k":
-                            Brett[j,i] = new King(false);
+                            Brett[i,j] = new King(false);
                             break;
                         case "q":
-                            Brett[j,i] = new Queen(false);
+                            Brett[i, j] = new Queen(false);
                             break;
                         case "r":
-                            Brett[j,i] = new Rook(false);
+                            Brett[i, j] = new Rook(false);
                             break;
                         case "b":
-                            Brett[j,i] = new Bishop(false);
+                            Brett[i, j] = new Bishop(false);
                             break;
                         case "n":
-                            Brett[j,i] = new Knight(false);
+                            Brett[i, j] = new Knight(false);
                             break;
                         // White pieces
                         case "P":
-                            Brett[j,i] = new Pawn(true);
+                            Brett[i, j] = new Pawn(true);
                             break;
                         case "K":
-                            Brett[j,i] = new King(true);
+                            Brett[i, j] = new King(true);
                             break;
                         case "Q":
-                            Brett[j,i] = new Queen(true);
+                            Brett[i, j] = new Queen(true);
                             break;
                         case "R":
-                            Brett[j,i] = new Rook(true);
+                            Brett[i, j] = new Rook(true);
                             break;
                         case "B":
-                            Brett[j,i] = new Bishop(true);
+                            Brett[i, j] = new Bishop(true);
                             break;
                         case "N":
-                            Brett[j,i] = new Knight(true);
+                            Brett[i, j] = new Knight(true);
+                            break;
+                        case "e":
+                            Brett[i, j] = null;
                             break;
                         default:
-                            Brett[j,i] = null;
+                            Brett[i, j] = null;
                             break;
                     }
                 }
@@ -134,6 +140,7 @@ namespace _029_Schach
             fs.Close();
             return datatext;
         }
+
         public int[] Input_MoveConsole() {
             char[] input = new char[5];
             Console.WriteLine("Eingabe: ");
@@ -162,6 +169,7 @@ namespace _029_Schach
             
             if (CheckFormat.IsMatch(input)) {
                 switch (input[0]) {
+
                     case 'a':
                         rtn[0] = 0; break;
                     case 'b':
@@ -182,7 +190,7 @@ namespace _029_Schach
 
                 rtn[1] = input[1] - '0' - 1;
 
-                switch (input[3]) {
+                switch (input[3]) { //converts the coordinates to int numbers
                     case 'a':
                         rtn[2] = 0; break;
                     case 'b':
