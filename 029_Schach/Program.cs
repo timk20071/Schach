@@ -3,12 +3,15 @@
 namespace _029_Schach {
     internal class Program {
         static void Main(string[] args) {
-          Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             TCP_Server tcp_tcpserver = new TCP_Server(false);
 
             while (true) {
-                    tcp_tcpserver.Move();
+                tcp_tcpserver.Move();
             }
+        }
+    }
+}
             /*
             Spielbrett spielbrett = new Spielbrett();
             int[] inputData = new int[4];

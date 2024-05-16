@@ -72,7 +72,7 @@ namespace _029_Schach {
 
             turnforwhite = !turnforwhite;
 
-            Console.WriteLine(spielbrett.Brett[0,0].Move(input[1],input[0],input[3],input[2], spielbrett.Brett));
+            Console.WriteLine(spielbrett.Brett[0,0].Move(input[0],input[1],input[2],input[3], spielbrett.Brett));
 
             OutputGameState();
         }

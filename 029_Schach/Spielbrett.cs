@@ -3,8 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using _029_Schach.Figuren;
 
-namespace _029_Schach
-{
+namespace _029_Schach {
     internal class Spielbrett {
         public Figur[,] Brett = new Figur[8, 8]; //[xpos,ypos]
         
@@ -48,9 +47,6 @@ namespace _029_Schach
             str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
             str += $"{Environment.NewLine}    A   B   C   D   E   F   G   H{Environment.NewLine}";
             return Encoding.UTF8.GetBytes(str);                
-            }
-            Console.Write("\n ---------------------------------");
-            Console.WriteLine("\n   A   B   C   D   E   F   G   H  ");
         }
         /*     White | Black
          * Pawn:   P | p

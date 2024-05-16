@@ -44,34 +44,29 @@ namespace _029_Schach.Figuren {
                 spielbrett.Brett[currxpos, currypos] = null;
 
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 int[] inputData = new int[4];
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
                 Console.ResetColor();
-                inputData = spielbrett.Input();
+                inputData = spielbrett.Input_MoveConsole();
                 currxpos = inputData[0];
                 currypos = inputData[1];
                 targetxpos = inputData[2];
                 targetypos = inputData[3];
                 figur.Move(inputData[0], inputData[1], inputData[2], inputData[3], spielbrett.Brett[inputData[0], inputData[1]], spielbrett);
             }
-            
         }
 
         private bool CheckCollision(int currxpos, int currypos, int targetxpos, int targetypos, Figur figur, Spielbrett spielbrett) {
             //checks if the collision is at the end of the target and the piece has an other color as the moving one
 
             bool CheckColliding = false;
-            if (figur.Symbol == '\u265F' || figur.Symbol == '\u2659')
+           
+            if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 0 && null != spielbrett.Brett[targetxpos, targetypos])
             {
-                if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 0 && null != spielbrett.Brett[targetxpos, targetypos])
-                {
-                    return false;
-                }
+                return false;
             }
-            
 
             if (null != spielbrett.Brett[targetxpos, targetypos] && figur.IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite)
             {
@@ -81,18 +76,15 @@ namespace _029_Schach.Figuren {
             return CheckColliding;
         }
 
-        public virtual bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) 
-        {
+        public virtual bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             return false;
         }
 
-        public virtual bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
-        {
+        public virtual bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
             return true;
         }
 
-        private void Capture(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
-        {
+        private void Capture(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
             spielbrett.Brett[targetxpos, targetypos] = spielbrett.Brett[currxpos, currypos];
             spielbrett.Brett[currxpos, currypos] = null;
         }
