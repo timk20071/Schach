@@ -4,12 +4,16 @@ namespace _029_Schach {
     internal class Program {
         static void Main(string[] args) {
           Console.OutputEncoding = System.Text.Encoding.UTF8;
+            TCP_Server tcp_tcpserver = new TCP_Server(false);
 
+            while (true) {
+                    tcp_tcpserver.Move();
+            }
+            /*
             Spielbrett spielbrett = new Spielbrett();
             int[] inputData = new int[4];
             Figur figur;
-
-
+            // console move///////////////////////////////////////
             while (true) 
             {
                 spielbrett.Print();
@@ -17,7 +21,6 @@ namespace _029_Schach {
                 figur = spielbrett.Brett[inputData[0], inputData[1]];
                 figur.Move(inputData[0], inputData[1], inputData[2], inputData[3], figur, spielbrett);
             }
-
         }
 
   
