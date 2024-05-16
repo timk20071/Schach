@@ -33,14 +33,14 @@ namespace _029_Schach.Figuren {
         }
 
         public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
-            if (currypos < targetypos && currxpos == targetxpos && spielbrett.Brett[currxpos, currypos].IsWhite) {//check if pawn is moving up  //// iswhite abfrage als letztes geändert (falls Fehler auftreten
+            if (currypos < targetypos && currxpos == targetxpos) {//check if pawn is moving up  
                 for (int i = 1; i <= Math.Abs(currypos - targetypos); i++) {//moves forward
                     if (spielbrett.Brett[currxpos, currypos + i] != null) {//check if something is infront of the pawn
                         return false;
                     }
                 }
             }
-            else if (currypos > targetypos && currxpos == targetxpos && !spielbrett.Brett[currxpos,currypos].IsWhite) {//check if pawn is moving down  //// iswhite abfrage als letztes geändert (falls Fehler auftreten
+            else if (currypos > targetypos && currxpos == targetxpos) {//check if pawn is moving down  
                 for (int i = 1; i <= (currypos - targetypos); i++) {//moves downwards
                     if (null != spielbrett.Brett[currxpos, currypos - i]) {//check if something is infront of the pawn
                         return false;
@@ -48,6 +48,20 @@ namespace _029_Schach.Figuren {
                 }
             }
             return true;
+        }
+
+        private override bool CheckCollision(int currxpos,int currypos,int targetxpos,int targetypos,Spielbrett spielbrett) { // If Player can move there returns true
+            //checks if the collision is at the end of the target and the piece has an other color as the moving one
+
+            if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 0 && spielbrett.Brett[targetxpos,targetypos] != null) { // Bauer kann nicht nach vorne schlagen!!!
+                return false;
+            }
+
+            if (spielbrett.Brett[targetxpos,targetypos] == null) {
+                return true;
+            }
+
+            return false;
         }
     }
 }
