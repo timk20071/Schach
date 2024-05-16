@@ -16,7 +16,6 @@ namespace _029_Schach {
             
             for (int i = 7; i >= 0; i--) {
 
-
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i+1} | ";
                 for (int j = 0; j < 8; j++) {
                     if (Brett[j,i] != null)
@@ -34,7 +33,6 @@ namespace _029_Schach {
             string str = "";
 
             for (int i = 0; i <= 7; i++) {
-
 
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i + 1} | ";
                 for (int j = 0; j < 8; j++) {
@@ -56,7 +54,7 @@ namespace _029_Schach {
          * Bishop: B | b
          * Knight: N | n 
          * Empty:    e
-          
+         
          r n b q k b n r
          p p p p p p p p
          e e e e e e e e
@@ -157,7 +155,7 @@ namespace _029_Schach {
             return ConvertInput(input, false, client, turnforwhite);
         }
 
-        public int[] ConvertInput(char[] input, bool fromconsole, NetworkStream? client, bool turnforwhite) {
+        private int[] ConvertInput(char[] input, bool fromconsole, NetworkStream? client, bool turnforwhite) {
             int[] rtn = new int[4];
             Regex CheckFormat = new Regex(@"^[a-h][1-8]x[a-h][1-8]");
 

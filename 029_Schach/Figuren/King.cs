@@ -22,54 +22,32 @@ namespace _029_Schach.Figuren {
             return false;
         }
 
-        public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
-        {
-            bool pathIsClear = true;
-            int[] input = { currxpos, currypos, targetxpos, targetypos };
-
-            if (input[1] < input[3] && input[0] == input[2] && null != spielbrett.Brett[input[0], input[0] + 1])//check if path one step up is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+        public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
+            if (currypos < targetypos && currxpos == targetxpos && spielbrett.Brett[currxpos, currxpos + 1] != null) {//check if path one step up is clear
+                return false;
             }
-            else if (input[1] > input[3] && input[0] == input[2] && null != spielbrett.Brett[input[0], input[1] - 1])//check if path one step down is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+            else if (currypos > targetypos && currxpos == targetxpos && spielbrett.Brett[currxpos,currypos - 1] != null) {//check if path one step down is clear
+                return false;
             }
-            else if (input[1] == input[3] && input[0] < input[2] && null != spielbrett.Brett[input[0] + 1, input[1]])//check if path one step to the right is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+            else if (currypos == targetypos && currxpos < targetxpos && spielbrett.Brett[currxpos + 1, currypos] != null) {//check if path one step to the right is clear
+                return false;
             }
-            else if (input[1] == input[3] && input[0] > input[2] && null != spielbrett.Brett[input[0] - 1, input[1]])//check if path one step to the left is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+            else if (currypos == targetypos && currxpos > targetxpos && spielbrett.Brett[currxpos - 1,currypos] != null) {//check if path one step to the left is clear
+                return false;
             }
-            else if (input[1] < input[3] && input[0] > input[2] && null != spielbrett.Brett[input[0] - 1, input[1] + 1])//check if path one step up and left is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+            else if (currypos < targetypos && currxpos > targetxpos && spielbrett.Brett[currxpos - 1,currypos + 1] != null) {//check if path one step up and left is clear
+                return false;
             }
-            else if (input[1] < input[3] && input[0] < input[2] && null != spielbrett.Brett[input[0] + 1, input[1] + 1])//check if path one step up and right is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+            else if (currypos < targetypos && currxpos < targetxpos && spielbrett.Brett[currxpos + 1,currypos + 1] != null) {//check if path one step up and right is clear
+                return false;
             }
-            else if (input[1] > input[3] && input[0] < input[2] && null != spielbrett.Brett[input[0] + 1, input[1] - 1])//check if path one step down and right is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+            else if (currypos > targetypos && currxpos < targetxpos && spielbrett.Brett[currxpos + 1,currypos - 1] != null) {//check if path one step down and right is clear
+                return false;
             }
-            else if (input[1] > input[3] && input[0] > input[2] && null != spielbrett.Brett[input[0] - 1, input[1] - 1])//check if path one step down and left is clear 
-            {
-                pathIsClear = false;
-                return pathIsClear;
+            else if (currypos > targetypos && currxpos > targetxpos && spielbrett.Brett[currxpos - 1,currypos - 1] != null) {//check if path one step down and left is clear
+                return false;
             }
-
-            return pathIsClear;
+            return true;
         }
-
     }
 }
