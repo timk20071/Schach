@@ -60,6 +60,7 @@ namespace _029_Schach {
             int[] input = new int[4];
             NetworkStream movingstream;
             NetworkStream notmovingstream;
+            bool movevalid;
             if (turnforwhite) {
                 movingstream = stream_w;
                 notmovingstream = stream_b;
@@ -68,11 +69,13 @@ namespace _029_Schach {
                 movingstream = stream_b;
                 notmovingstream = stream_w;
             }
-            input = spielbrett.Input_MoveServer(turnforwhite, movingstream);
-
+            
+            do {
+                input = spielbrett.Input_MoveServer(turnforwhite, movingstream);
+                movevalid = spielbrett.Brett[input[0],input[1]].Tcp_Move(input[0],input[1],input[2],input[3], spielbrett, false);
+                Console.WriteLine(movevalid);
+            } while (!movevalid);
             turnforwhite = !turnforwhite;
-
-            spielbrett.Brett[0,0].Move(input[0],input[1],input[2],input[3], spielbrett, false);
 
             OutputGameState();
         }

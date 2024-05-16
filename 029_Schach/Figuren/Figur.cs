@@ -18,8 +18,8 @@ namespace _029_Schach.Figuren {
                 Symbol = symbolblack;
             }
         }
-        /*
-        public void Move(int currxpos,int currypos,int targetxpos,int targetypos,Spielbrett spielbrett,bool fromconsole) {
+        
+        public void Console_Move(int currxpos,int currypos,int targetxpos,int targetypos,Spielbrett spielbrett,bool fromconsole) {
             try {
                 if (!( spielbrett.Brett[currxpos,currypos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos,spielbrett) )) {
                     throw new Exception("Der von Ihnen einegebener Zug ist führ diese Figur nicht zulässig! Bitte geben Sie erneut ein");
@@ -49,11 +49,11 @@ namespace _029_Schach.Figuren {
                 currypos = inputData[1];
                 targetxpos = inputData[2];
                 targetypos = inputData[3];
-                spielbrett.Brett[currxpos,currypos].Move(currxpos,currypos,targetxpos,targetypos,spielbrett,fromconsole);
+                spielbrett.Brett[currxpos,currypos].Console_Move(currxpos,currypos,targetxpos,targetypos,spielbrett,fromconsole);
             }
         }
-        */
-        public bool Move(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett, bool fromconsole) {///////////////////////////////////////////////////////////
+        
+        public bool Tcp_Move(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett, bool fromconsole) {///////////////////////////////////////////////////////////
 
             if (spielbrett.Brett[currxpos,currypos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos,spielbrett)) {
                 if (spielbrett.Brett[currxpos,currypos].CheckIfPathIsClear(currxpos,currypos,targetxpos,targetypos,spielbrett)) {
@@ -66,20 +66,14 @@ namespace _029_Schach.Figuren {
             return false;
         }
 
-        private bool CheckCollision(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) { // If Player can move there returns true
-            //checks if the collision is at the end of the target and the piece has an other color as the moving one
-
-            bool checkColliding = false;
-           
-            if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 0 && null != spielbrett.Brett[targetxpos, targetypos]) {
-                return false;
+        private virtual bool CheckCollision(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) { // If Player can move there returns true
+            if (spielbrett.Brett[targetxpos, targetypos] == null) {
+                return true;
             }
-
-            if (spielbrett.Brett[targetxpos, targetypos] != null && spielbrett.Brett[currxpos,currypos].IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite) {
-                checkColliding = true;
+            else if (spielbrett.Brett[targetxpos,targetypos] != null && spielbrett.Brett[currxpos,currypos].IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite) {
+                return true;
             }
-
-            return checkColliding;
+            return false;
         }
 
         public virtual bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
