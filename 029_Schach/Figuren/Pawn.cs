@@ -60,6 +60,9 @@ namespace _029_Schach.Figuren {
             if (spielbrett.Brett[targetxpos,targetypos] == null) {
                 return true;
             }
+            else if (spielbrett.Brett[targetxpos,targetypos] != null && spielbrett.Brett[currxpos,currypos].IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite) {
+                return true;
+            }
 
             return false;
         }
