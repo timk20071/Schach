@@ -9,9 +9,9 @@ namespace _029_Schach.Figuren {
     internal class Rook : Figur {
         private static char _symbolBlack = '\u265C';
         private static char _symbolWhite = '\u2656';
-        private bool _hasmoved = false;
+        private static char savecharacter = 'R';
 
-        public Rook(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
+        public Rook(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
         public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             if (currxpos == targetxpos || currypos == targetypos) { 

@@ -23,7 +23,7 @@ namespace _029_Schach {
         public TCP_Server(bool loadpreviousgame) {
             StartServer("127.0.0.1", 1111);
             ConnectClients();
-            StartOrLoadGame(loadpreviousgame);
+            spielbrett = new Spielbrett(loadpreviousgame);
             OutputGameState();
             
         }
@@ -40,15 +40,6 @@ namespace _029_Schach {
             client_b = _tcplistener.AcceptTcpClient(); // Wartet so lange, bis schwarzer client auf server joint
             stream_w = client_w.GetStream();
             stream_b = client_b.GetStream();
-        }
-
-        private void StartOrLoadGame(bool loadpreviousgame) {
-            if (loadpreviousgame) {
-                // Wenn Spielstand vorhanden && eingabe mit welcher Spielstand gespielt werden sollte
-            }
-            else {
-                spielbrett = new Spielbrett();
-            }
         }
 
         public void OutputGameState() {
@@ -78,6 +69,7 @@ namespace _029_Schach {
             turnforwhite = !turnforwhite;
 
             OutputGameState();
+            spielbrett.Save();
         }
     }
 }

@@ -8,8 +8,10 @@ namespace _029_Schach.Figuren {
     internal class Knight : Figur{
         private static char _symbolBlack = '\u265E';
         private static char _symbolWhite = '\u2658';
+        private static char savecharacter = 'N';
 
-        public Knight(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
+
+        public Knight(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
         public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             if (Math.Abs(currxpos - currypos) == 2 && Math.Abs(targetypos - currypos) == 1 ||

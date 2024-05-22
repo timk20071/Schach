@@ -8,9 +8,9 @@ namespace _029_Schach.Figuren {
     internal class Queen : Figur {
         private static char _symbolBlack = '\u265A';
         private static char _symbolWhite = '\u2654';
-        private bool _hasmoved = false;
+        private static char savecharacter = 'Q';        
 
-        public Queen(bool iswhite) : base(iswhite, _symbolWhite, _symbolBlack) { }
+        public Queen(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
         public override bool CheckIfMoveCorrect(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
             if (Math.Abs(currxpos - targetxpos) == Math.Abs(currypos - targetypos) || (currxpos == targetxpos || currypos == targetypos)) {

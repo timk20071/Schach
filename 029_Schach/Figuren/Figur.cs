@@ -9,16 +9,19 @@ namespace _029_Schach.Figuren {
     internal class Figur {
         public bool IsWhite { get; set; }
         public char Symbol { get; set; }
-        public Figur(bool iswhite,char symblowhite,char symbolblack) {
+        public char Savecharacter { get; set; }
+        public Figur(bool iswhite,char symblowhite,char symbolblack,char savecharacter) {
             IsWhite = iswhite;
             if (IsWhite) {
                 Symbol = symblowhite;
+                Savecharacter = Convert.ToChar(savecharacter);
             }
             else {
                 Symbol = symbolblack;
+                Savecharacter = Convert.ToChar((int)savecharacter + 32);
             }
         }
-        
+
         public void Console_Move(int currxpos,int currypos,int targetxpos,int targetypos,Spielbrett spielbrett,bool fromconsole) {
             try {
                 if (!( spielbrett.Brett[currxpos,currypos].CheckIfMoveCorrect(currxpos,currypos,targetxpos,targetypos,spielbrett) )) {
@@ -66,7 +69,7 @@ namespace _029_Schach.Figuren {
             return false;
         }
 
-        private virtual bool CheckCollision(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) { // If Player can move there returns true
+        protected virtual bool CheckCollision(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) { // If Player can move there returns true
             if (spielbrett.Brett[targetxpos, targetypos] == null) {
                 return true;
             }

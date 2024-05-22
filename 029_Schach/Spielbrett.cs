@@ -7,8 +7,8 @@ namespace _029_Schach {
     internal class Spielbrett {
         public Figur[,] Brett = new Figur[8, 8]; //[xpos,ypos]
         
-        public Spielbrett() {
-            Reset();
+        public Spielbrett(bool loadpreviousgame) {
+            Reset(loadpreviousgame);
         }
 
         public byte[] PrintWhite() {
@@ -64,8 +64,8 @@ namespace _029_Schach {
          P P P P P P P P
          R N B Q K B N R
         */
-        public void Reset() {
-            string[,] data = ReadFile();
+        public void Reset(bool loadpreviousgame) {
+            string[,] data = LoadGame(loadpreviousgame);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++){
                     switch (data[i,j]) {
@@ -118,11 +118,12 @@ namespace _029_Schach {
             }
         }
 
-        private string[,] ReadFile() {
+        private string[,] LoadGame(bool loadpreviousgame) {
             string temp;
             string[,] datatext = new string[8,8];
-        
-            FileStream fs = new FileStream("../../../init_defaultbrett.txt", FileMode.Open, FileAccess.Read);
+            string path = "../../../init_defaultbrett.txt";
+            if(loadpreviousgame) path = "../../../savegame.txt";
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
             for (int i = 0; i < 8; i++) {
@@ -216,6 +217,25 @@ namespace _029_Schach {
                 Input_MoveServer(turnforwhite, client);
             }
             return rtn;
+        }
+        public void Save() {
+            FileStream fs = new FileStream("../../../savegame.txt",FileMode.Open,FileAccess.Write);
+            StreamWriter sr = new StreamWriter(fs);
+
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (Brett[j,i] == null)
+                        sr.Write("e ");
+                    else
+                        sr.Write($"{Convert.ToChar(Brett[j,i].Savecharacter)} ");
+                }
+                sr.WriteLine();
+            }
+            sr.Close();
+            fs.Close();
+        }
+        public void LoadSaveGame() {
+
         }
     }
 }

@@ -9,9 +9,10 @@ namespace _029_Schach.Figuren {
     internal class King: Figur {
         private static char _symbolBlack = '\u265A';
         private static char _symbolWhite = '\u2654';
-        private bool _hasmoved = false;
+        private static char savecharacter = 'K';
 
-        public King(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
+
+        public King(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
         public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             if (((currxpos - targetxpos)== 1 || (currxpos - targetxpos) == -1 || currxpos == targetxpos) &&

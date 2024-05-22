@@ -5,7 +5,6 @@ namespace _029_Schach {
         static void Main(string[] args) {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             TCP_Server tcp_tcpserver = new TCP_Server(false);
-
             while (true) {
                 tcp_tcpserver.Move();
             }

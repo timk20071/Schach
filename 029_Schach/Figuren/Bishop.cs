@@ -9,8 +9,9 @@ namespace _029_Schach.Figuren {
     internal class Bishop : Figur {
         private static char _symbolBlack = '\u265D';
         private static char _symbolWhite = '\u2657';
+        private static char savecharacter = 'B';
 
-        public Bishop(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
+        public Bishop(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
         public override bool CheckIfMoveCorrect(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
             if (Math.Abs(currxpos - targetxpos) == Math.Abs(currypos - targetypos)) {

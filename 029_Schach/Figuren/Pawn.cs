@@ -9,9 +9,10 @@ namespace _029_Schach.Figuren {
 
         private static char _symbolBlack = '\u265F';
         private static char _symbolWhite = '\u2659';
+        private static char savecharacter = 'P';
         private bool _hasmoved = false;
-
-        public Pawn(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack) { }
+        
+        public Pawn(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
         public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
             if ((Math.Abs(currypos - targetypos) == 2 && currxpos == targetxpos && _hasmoved == false))
@@ -50,7 +51,7 @@ namespace _029_Schach.Figuren {
             return true;
         }
 
-        private override bool CheckCollision(int currxpos,int currypos,int targetxpos,int targetypos,Spielbrett spielbrett) { // If Player can move there returns true
+        protected override bool CheckCollision(int currxpos,int currypos,int targetxpos,int targetypos,Spielbrett spielbrett) { // If Player can move there returns true
             //checks if the collision is at the end of the target and the piece has an other color as the moving one
 
             if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 0 && spielbrett.Brett[targetxpos,targetypos] != null) { // Bauer kann nicht nach vorne schlagen!!!
