@@ -194,5 +194,30 @@ namespace _029_Schach
             return rtn;
         }
 
+
+        public void WinRecognition(Spielbrett spielbrett)
+        {
+            char[,] possibleMoves = new char[8,8];
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 8; y++)
+                {
+                    possibleMoves[x, y] = 'o';
+                }
+            }
+
+
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 8; y++)
+                {
+                    if (Brett[x, y] != null)
+                    {
+                        Brett[x, y].CheckAllPossibleMoves(possibleMoves, x, y, spielbrett);
+                    }
+                    
+                }
+            }
+        }
     }
 }

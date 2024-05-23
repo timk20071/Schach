@@ -16,6 +16,8 @@ namespace _029_Schach {
                 inputData = spielbrett.Input();
                 figur = spielbrett.Brett[inputData[0], inputData[1]];
                 figur.Move(inputData[0], inputData[1], inputData[2], inputData[3], figur, spielbrett);
+                spielbrett.WinRecognition(spielbrett);
+                //Console.WriteLine("ok");
             }
 
         }

@@ -29,7 +29,7 @@ namespace _029_Schach.Figuren {
 
                 if (!figur.CheckIfPathIsClear(currxpos, currypos, targetxpos, targetypos, spielbrett))
                 {
-                    if (figur.CheckCollision(currxpos, currypos, targetxpos, targetypos, figur, spielbrett))
+                    if (figur.CheckCollision(currxpos, currypos, targetxpos, targetypos, spielbrett.Brett))
                     {
                         Capture(currxpos, currypos, targetxpos, targetypos, spielbrett);
                         return;
@@ -60,20 +60,20 @@ namespace _029_Schach.Figuren {
             
         }
 
-        private bool CheckCollision(int currxpos, int currypos, int targetxpos, int targetypos, Figur figur, Spielbrett spielbrett) {
+        protected bool CheckCollision(int currxpos, int currypos, int targetxpos, int targetypos, Figur[,] brett) {
             //checks if the collision is at the end of the target and the piece has an other color as the moving one
 
             bool CheckColliding = false;
-            if (figur.Symbol == '\u265F' || figur.Symbol == '\u2659')
+            if (brett[currxpos, currypos].Symbol == '\u265F' || brett[currxpos, currypos].Symbol == '\u2659')
             {
-                if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 0 && null != spielbrett.Brett[targetxpos, targetypos])
+                if (Math.Abs(currypos - targetypos) == 1 && Math.Abs(currxpos - targetxpos) == 0 && null != brett[targetxpos, targetypos])
                 {
                     return false;
                 }
             }
             
 
-            if (null != spielbrett.Brett[targetxpos, targetypos] && figur.IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite)
+            if (null != brett[targetxpos, targetypos] && brett[currxpos, currypos].IsWhite != brett[targetxpos,targetypos].IsWhite)
             {
                 CheckColliding = true;
             }
@@ -95,6 +95,34 @@ namespace _029_Schach.Figuren {
         {
             spielbrett.Brett[targetxpos, targetypos] = spielbrett.Brett[currxpos, currypos];
             spielbrett.Brett[currxpos, currypos] = null;
+        }
+
+        public char[,] CheckAllPossibleMoves(char[,] possibleMoves, int currxpos, int currypos, Spielbrett spielbrett)
+        {
+            for (int targetxpos = 0; targetxpos < 8; targetxpos++)
+            {
+                for (int targetypos = 0; targetypos < 8; targetypos++)
+                {
+                    if (spielbrett.Brett[currxpos, currypos].CheckIfMoveCorrect(currxpos, currypos, targetxpos, targetypos, spielbrett))
+                    {
+                        if ((!spielbrett.Brett[currxpos, currypos].CheckIfPathIsClear(currxpos, currypos, targetxpos, targetypos, spielbrett)))
+                        {
+                            if (spielbrett.Brett[currxpos, currypos].CheckCollision(currxpos, currypos, targetxpos, targetypos, spielbrett.Brett))
+                            {
+                                possibleMoves[targetxpos, targetypos] = 'X';
+                            }
+                            else
+                            {
+                                break;
+                            }
+
+                            possibleMoves[targetxpos, targetypos] = 'X';
+                        }
+                    }
+                }
+            }
+
+            return possibleMoves;
         }
     }
 }

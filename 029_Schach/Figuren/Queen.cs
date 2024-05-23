@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace _029_Schach.Figuren {
     internal class Queen : Figur {
-        private static char _symbolBlack = '\u265A';
-        private static char _symbolWhite = '\u2654';
+        private static char _symbolBlack = '\u265B';
+        private static char _symbolWhite = '\u2655';
         private bool _hasmoved = false;
 
         public Queen(bool iswhite) : base(iswhite, _symbolWhite, _symbolBlack) { }
@@ -61,7 +61,7 @@ namespace _029_Schach.Figuren {
             {
                 for (int i = 1; i <= (input[0] - input[2]); i++)//calculates how many fields the queen has to go
                 {
-                    if (null != spielbrett.Brett[input[0], input[1] - i])//check if the path is free
+                    if (null != spielbrett.Brett[input[0] - i, input[1]])//check if the path is free
                     {
                         pathIsClear = false;
                         return pathIsClear;
