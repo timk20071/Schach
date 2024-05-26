@@ -237,8 +237,5 @@ namespace _029_Schach {
             sr.Close();
             fs.Close();
         }
-        public void LoadSaveGame() {
-
-        }
     }
 }

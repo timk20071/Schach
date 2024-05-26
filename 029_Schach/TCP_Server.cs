@@ -59,7 +59,7 @@ namespace _029_Schach {
             
             do {
                 input = spielbrett.Input_MoveServer(turnforwhite, movingstream);
-                movevalid = spielbrett.Brett[input[0],input[1]].Tcp_Move(input[0],input[1],input[2],input[3], spielbrett, false);
+                movevalid = spielbrett.Brett[input[0],input[1]].Tcp_Move(input[0],input[1],input[2],input[3], spielbrett, movingstream);
                 Console.WriteLine(movevalid); // Console log if the move is valdi
             } while (!movevalid);
             turnforwhite = !turnforwhite;
