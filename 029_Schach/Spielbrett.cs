@@ -146,12 +146,17 @@ namespace _029_Schach {
         }
 
         public int[] Input_MoveServer(bool turnforwhite, NetworkStream client) {
-            byte[] inputbuffer = new byte[5];
+            byte[] inputbuffer = new byte[100];
             char[] input = new char[5];
+            int inputproblem = 0;
             client.Write(Encoding.UTF8.GetBytes("Dein Zug (startpos+x+zielpos):"));
-            client.Read(inputbuffer, 0, 5);
+            client.Read(inputbuffer, 0, 100);
+            while (inputbuffer[inputproblem] == '\r') {
+                inputproblem += 2;
+            }
+            if (inputbuffer[0] == '\r') inputproblem = 2;
             for (int i = 0; i < 5; i++) {
-                input[i] = (char)inputbuffer[i];
+                input[i] = (char)inputbuffer[i + inputproblem];
             }
             return ConvertInput(input, false, client, turnforwhite);
         }
@@ -160,8 +165,6 @@ namespace _029_Schach {
             int[] rtn = new int[4];
             Regex CheckFormat = new Regex(@"^[a-h][1-8]x[a-h][1-8]");
 
-
-            
             if (CheckFormat.IsMatch(input)) {
                 switch (input[0]) {
 
@@ -213,7 +216,7 @@ namespace _029_Schach {
                 Input_MoveConsole();
             }
             else if (!CheckFormat.IsMatch(input) && !fromconsole) {
-                client.Write(Encoding.UTF8.GetBytes("Falsche Eingabe!\n"));
+                client.Write(Encoding.UTF8.GetBytes("Falsche Eingabe!\n\r"));
                 Input_MoveServer(turnforwhite, client);
             }
             return rtn;

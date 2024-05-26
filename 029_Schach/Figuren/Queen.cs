@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace _029_Schach.Figuren {
     internal class Queen : Figur {
-        private static char _symbolBlack = '\u265A';
-        private static char _symbolWhite = '\u2654';
+        private static char _symbolBlack = '\u265B';
+        private static char _symbolWhite = '\u2655';
         private static char savecharacter = 'Q';        
 
         public Queen(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }

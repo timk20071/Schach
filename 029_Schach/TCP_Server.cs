@@ -50,21 +50,17 @@ namespace _029_Schach {
         public void Move() {
             int[] input = new int[4];
             NetworkStream movingstream;
-            NetworkStream notmovingstream;
             bool movevalid;
-            if (turnforwhite) {
+
+            if (turnforwhite) 
                 movingstream = stream_w;
-                notmovingstream = stream_b;
-            }
-            else {
+            else 
                 movingstream = stream_b;
-                notmovingstream = stream_w;
-            }
             
             do {
                 input = spielbrett.Input_MoveServer(turnforwhite, movingstream);
                 movevalid = spielbrett.Brett[input[0],input[1]].Tcp_Move(input[0],input[1],input[2],input[3], spielbrett, false);
-                Console.WriteLine(movevalid);
+                Console.WriteLine(movevalid); // Console log if the move is valdi
             } while (!movevalid);
             turnforwhite = !turnforwhite;
 
@@ -73,18 +69,3 @@ namespace _029_Schach {
         }
     }
 }
-
-//Example code:
-/*
-NetworkStream TCPStream = client.GetStream(); // liest inputstream ein
-
-while (TCPStream.Read(buffer, 0, buffer.Length) != 0) { // falls nichts geschrieben wurde, scheife auslassen
-    string recievedmessage = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-    byte[] data = Encoding.UTF8.GetBytes("Connected");
-    Console.Write(recievedmessage); // schreibt input aus
-    buffer = new byte[buffer.Length];
-    TCPStream.Write(data); // gibt connected zum client weiter, wenn er verbunde ist / eine Nachricht gesendet wird
-
-
-}
-*/
