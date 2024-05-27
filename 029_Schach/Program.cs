@@ -20,63 +20,6 @@ namespace _029_Schach {
                     spielbrett.Brett[inputData[0],inputData[1]].Console_Move(inputData[0],inputData[1],inputData[2],inputData[3],spielbrett, true);
                 }
             }
-            
         }
     }
 }
-            /*
-            
-        }
-
-  
-    }
-}
-           
-/*
-private string SymbolBlack { get; set; } = "\u265E";
-private string SymbolWhite { get; set; } = "\u2658";
-
-
-public Springer(bool iswhite,char symbol) : base(iswhite,symbol) {
-
-}
-
-public override string ToString() {
-    if (base.IsWhite) {
-        return SymbolWhite;
-    }
-    return SymbolBlack;
-}
-
-public bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
-    if (IsColliding(targetxpos,targetypos)) {
-        return false;
-    }
-    if (currxpos == currypos + 2) { }
-
-}
-    }
-        private string SymbolBlack { get; set; } = "\u265E";
-private string SymbolWhite { get; set; } = "\u2658";
-
-
-public Springer(bool iswhite,char symbol) : base(iswhite,symbol) {
-
-}
-
-public override string ToString() {
-    if (base.IsWhite) {
-        return SymbolWhite;
-    }
-    return SymbolBlack;
-}
-
-public bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos) {
-    if (IsColliding(targetxpos,targetypos)) {
-        return false;
-    }
-    if (currxpos == currypos + 2) { }
-
-}
-    }
-*/
