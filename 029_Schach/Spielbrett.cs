@@ -154,7 +154,7 @@ namespace _029_Schach {
             while (inputbuffer[inputproblem] == '\r') {
                 inputproblem += 2;
             }
-            if (inputbuffer[0] == '\r') inputproblem = 2;
+           
             for (int i = 0; i < 5; i++) {
                 input[i] = (char)inputbuffer[i + inputproblem];
             }
