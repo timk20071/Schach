@@ -92,10 +92,10 @@ namespace _029_Schach.Figuren {
         private void CheckPawnPromotion(int targetxpos, int targetypos, Figur[,] Brett,bool fromconsole, NetworkStream? client) {
             if (!(Savecharacter == 'P')) return; // Wenn die Figur kein Bauer ist --> verlassen
 
-            if((IsWhite && targetypos == 7 || !IsWhite && targetypos == 0) && fromconsole) {
+            if((IsWhite && targetypos == 0 || !IsWhite && targetypos == 7) && fromconsole) {
                 Console_Promote(targetxpos,targetypos,Brett);
             }
-            else if(( IsWhite && targetypos == 7 || !IsWhite && targetypos == 0 ) && fromconsole) {
+            else if(( IsWhite && targetypos == 0 || !IsWhite && targetypos == 7 ) && fromconsole) {
                 Tcp_Promote(targetxpos, targetypos, Brett, client);
             }
         }

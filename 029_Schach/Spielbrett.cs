@@ -139,8 +139,9 @@ namespace _029_Schach {
         public int[] Input_MoveConsole() {
             char[] input = new char[5];
             Console.WriteLine("Eingabe: ");
+            string strinput = Console.ReadLine();
             for (int i = 0; i < 5; i++) {
-                input[i] = Convert.ToChar(Console.Read());
+                input[i] = strinput[i];
             }
             return ConvertInput(input, true, null, true); // null and true = placeholder
         }
@@ -150,7 +151,9 @@ namespace _029_Schach {
             char[] input = new char[5];
             int inputproblem = 0;
             client.Write(Encoding.UTF8.GetBytes("Dein Zug (startpos+x+zielpos):"));
+
             client.Read(inputbuffer, 0, 100);
+            if (inputbuffer[0] == 13) client.Read(inputbuffer,0,100);
             while (inputbuffer[inputproblem] == '\r') {
                 inputproblem += 2;
             }
