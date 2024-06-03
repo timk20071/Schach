@@ -18,10 +18,12 @@ namespace _029_Schach {
 
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i+1} | ";
                 for (int j = 0; j < 8; j++) {
-                    if (Brett[j,i] != null)
+                    if (Brett[j,i] != null) {
                         str += (Brett[j,i].Symbol + " | ");
-                    else
+                    }   
+                    else {
                         str += "  | ";
+                    }
                 }
             }
             str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
@@ -46,6 +48,7 @@ namespace _029_Schach {
             str += $"{Environment.NewLine}    A   B   C   D   E   F   G   H{Environment.NewLine}";
             return Encoding.UTF8.GetBytes(str);                
         }
+
         /*     White | Black
          * Pawn:   P | p
          * King:   K | k
@@ -126,7 +129,7 @@ namespace _029_Schach {
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
-            for (int i = 0; i < 8; i++) {
+            for (int i = 7; i >= 0; i--) {
                 temp = sr.ReadLine();
                 for (int j = 0; j < 8; j++) {
                     datatext[j,i] = temp.Trim().Split(' ')[j];
@@ -134,6 +137,22 @@ namespace _029_Schach {
             }
             fs.Close();
             return datatext;
+        }
+        public void Save() {
+            FileStream fs = new FileStream("../../../savegame.txt",FileMode.Open,FileAccess.Write);
+            StreamWriter sr = new StreamWriter(fs);
+
+            for (int i = 7; i >= 0; i--) {
+                for (int j = 0; j < 8; j++) {
+                    if (Brett[j,i] == null)
+                        sr.Write("e ");
+                    else
+                        sr.Write($"{Convert.ToChar(Brett[j,i].Savecharacter)} ");
+                }
+                sr.WriteLine();
+            }
+            sr.Close();
+            fs.Close();
         }
 
         public int[] Input_MoveConsole() {
@@ -143,7 +162,7 @@ namespace _029_Schach {
             for (int i = 0; i < 5; i++) {
                 input[i] = strinput[i];
             }
-            return ConvertInput(input, true, null, true); // null and true = placeholder
+            return ConvertInput(input, true, null, true); // null and true = placeholder für tcp version
         }
 
         public int[] Input_MoveServer(bool turnforwhite, NetworkStream client) {
@@ -224,21 +243,6 @@ namespace _029_Schach {
             }
             return rtn;
         }
-        public void Save() {
-            FileStream fs = new FileStream("../../../savegame.txt",FileMode.Open,FileAccess.Write);
-            StreamWriter sr = new StreamWriter(fs);
 
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    if (Brett[j,i] == null)
-                        sr.Write("e ");
-                    else
-                        sr.Write($"{Convert.ToChar(Brett[j,i].Savecharacter)} ");
-                }
-                sr.WriteLine();
-            }
-            sr.Close();
-            fs.Close();
-        }
     }
 }

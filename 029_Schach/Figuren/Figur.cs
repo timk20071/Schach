@@ -12,10 +12,10 @@ namespace _029_Schach.Figuren {
         public bool IsWhite { get;}
         public char Symbol { get;}
         public char Savecharacter { get;}
-        public Figur(bool iswhite,char symblowhite,char symbolblack,char savecharacter) {
+        public Figur(bool iswhite,char symbolblack,char symbolwhite,char savecharacter) {
             IsWhite = iswhite;
-            if (IsWhite) {
-                Symbol = symblowhite;
+            if (iswhite) {
+                Symbol = symbolwhite;
                 Savecharacter = Convert.ToChar(savecharacter);
             }
             else {
@@ -92,11 +92,13 @@ namespace _029_Schach.Figuren {
         private void CheckPawnPromotion(int targetxpos, int targetypos, Figur[,] Brett,bool fromconsole, NetworkStream? client) {
             if (!(Savecharacter == 'P')) return; // Wenn die Figur kein Bauer ist --> verlassen
 
-            if((IsWhite && targetypos == 0 || !IsWhite && targetypos == 7) && fromconsole) {
-                Console_Promote(targetxpos,targetypos,Brett);
-            }
-            else if(( IsWhite && targetypos == 0 || !IsWhite && targetypos == 7 ) && fromconsole) {
-                Tcp_Promote(targetxpos, targetypos, Brett, client);
+            if((IsWhite && targetypos == 7 || !IsWhite && targetypos == 0)) {
+                if(fromconsole) {
+                    Console_Promote(targetxpos,targetypos,Brett);
+                }
+                else {
+                    Tcp_Promote(targetxpos, targetypos, Brett, client);
+                }
             }
         }
 
