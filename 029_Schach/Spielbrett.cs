@@ -67,8 +67,8 @@ namespace _029_Schach {
          P P P P P P P P
          R N B Q K B N R
         */
-        public void Reset(bool loadpreviousgame) {
-            string[,] data = LoadGame(loadpreviousgame);
+        private void Reset(bool loadpreviousgame) {
+            string[,] data = StartGame(loadpreviousgame);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++){
                     switch (data[i,j]) {
@@ -121,7 +121,7 @@ namespace _029_Schach {
             }
         }
 
-        private string[,] LoadGame(bool loadpreviousgame) {
+        private string[,] StartGame(bool loadpreviousgame) {
             string temp;
             string[,] datatext = new string[8,8];
             string path = "../../../init_defaultbrett.txt";

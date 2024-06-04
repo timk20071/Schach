@@ -7,18 +7,13 @@ using System.Text;
 namespace _029_Schach {
     internal class TCP_Server {
         private TcpListener _tcplistener;
-        private bool isFinished = false;
-        bool turnforwhite = true;
-        int counter = 0;
-        Spielbrett spielbrett;
-        TcpClient client_w;
-        TcpClient client_b;
-        NetworkStream stream_w;
-        NetworkStream stream_b;
-
-        byte[] buffer_w = new byte[1024]; // speichert Daten für client
-        byte[] buffer_b = new byte[1024];
-
+        
+        private TcpClient client_w;
+        private TcpClient client_b;
+        private NetworkStream stream_w;
+        private NetworkStream stream_b;
+        private bool turnforwhite = true;
+        private Spielbrett spielbrett;
 
         public TCP_Server(bool loadpreviousgame) {
             StartServer("127.0.0.1", 1111);
@@ -42,7 +37,7 @@ namespace _029_Schach {
             stream_b = client_b.GetStream();
         }
 
-        public void OutputGameState() {
+        private void OutputGameState() {
             stream_w.Write(spielbrett.PrintWhite());
             stream_b.Write(spielbrett.PrintBlack());
         }
@@ -52,10 +47,12 @@ namespace _029_Schach {
             NetworkStream movingstream;
             bool movevalid;
 
-            if (turnforwhite) 
+            if (turnforwhite) {
                 movingstream = stream_w;
-            else 
+            }
+            else {
                 movingstream = stream_b;
+            } 
             
             do {
                 input = spielbrett.Input_MoveServer(turnforwhite, movingstream);
