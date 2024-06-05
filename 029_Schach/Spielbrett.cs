@@ -18,12 +18,10 @@ namespace _029_Schach {
 
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i+1} | ";
                 for (int j = 0; j < 8; j++) {
-                    if (Brett[j,i] != null)
-                    {
+                    if (Brett[j,i] != null) {
                         str += (Brett[j, i].Symbol + " | ");
                     }    
-                    else
-                    {
+                    else {
                         str += "  | ";
                     }
                 }
@@ -237,45 +235,16 @@ namespace _029_Schach {
 
                 rtn[3] = input[4] - '0' - 1;
             }
-            else if(!CheckFormat.IsMatch(input) && fromconsole) {
+            if((!CheckFormat.IsMatch(input) && fromconsole) || Brett[rtn[0],rtn[1]] == null) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Falsche Eingabe!");
                 Console.ResetColor();
                 Input_MoveConsole();
             }
-            else if (!CheckFormat.IsMatch(input) && !fromconsole) {
+            else if ((!CheckFormat.IsMatch(input) && !fromconsole) || Brett[rtn[0],rtn[1]] == null) {
                 client.Write(Encoding.UTF8.GetBytes("Falsche Eingabe!\n\r"));
                 Input_MoveServer(turnforwhite, client);
             }
-            return rtn;
-        }
-
-        public List<char[,]> WinRecognition(Spielbrett spielbrett) {
-            List<char[,]> rtn = new List<char[,]>();
-            char[,] possibleMovesWhite = new char[8,8];
-            char[,] possibleMovesBlack = new char[8,8];
-            for (int x = 0; x < 8; x++) {
-                for (int y = 0; y < 8; y++) {
-                    possibleMovesWhite[x,y] = 'o';
-                    possibleMovesBlack[x,y] = 'o';
-                }
-            }
-
-
-            for (int x = 0; x < 8; x++) {
-                for (int y = 0; y < 8; y++) {
-                    if (Brett[x,y] != null && Brett[x,y].IsWhite == true) {
-                        possibleMovesWhite = Brett[x,y].CheckAllPossibleMoves(possibleMovesWhite,x,y,spielbrett,true);
-
-                    }
-                    else if (Brett[x,y] != null && Brett[x,y].IsWhite == false) {
-                        possibleMovesBlack = Brett[x,y].CheckAllPossibleMoves(possibleMovesBlack,x,y,spielbrett,false);
-                    }
-
-                }
-            }
-            rtn.Add(possibleMovesWhite);
-            rtn.Add(possibleMovesBlack);
             return rtn;
         }
     }
