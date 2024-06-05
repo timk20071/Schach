@@ -18,10 +18,12 @@ namespace _029_Schach {
 
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i+1} | ";
                 for (int j = 0; j < 8; j++) {
-                    if (Brett[j,i] != null) {
-                        str += (Brett[j,i].Symbol + " | ");
-                    }   
-                    else {
+                    if (Brett[j,i] != null)
+                    {
+                        str += (Brett[j, i].Symbol + " | ");
+                    }    
+                    else
+                    {
                         str += "  | ";
                     }
                 }
@@ -39,9 +41,13 @@ namespace _029_Schach {
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i + 1} | ";
                 for (int j = 0; j < 8; j++) {
                     if (Brett[j,i] != null)
-                        str += ( Brett[j,i].Symbol + " | " );
+                    {
+                        str += (Brett[j, i].Symbol + " | ");
+                    }
                     else
+                    {
                         str += "  | ";
+                    }                       
                 }
             }
             str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
@@ -244,5 +250,17 @@ namespace _029_Schach {
             return rtn;
         }
 
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (Brett[j,i] == null)
+                        sr.Write("e ");
+                    else
+                        sr.Write($"{Convert.ToChar(Brett[j,i].Savecharacter)} ");
+                }
+                sr.WriteLine();
+            }
+            sr.Close();
+            fs.Close();
+        }
     }
 }
