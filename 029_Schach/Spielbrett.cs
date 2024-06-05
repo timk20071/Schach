@@ -231,18 +231,17 @@ namespace _029_Schach {
 
                 rtn[3] = input[4] - '0' - 1;
             }
-            else if(!CheckFormat.IsMatch(input) && fromconsole) {
+            if((!CheckFormat.IsMatch(input) && fromconsole) || Brett[rtn[0],rtn[1]] == null) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Falsche Eingabe!");
                 Console.ResetColor();
                 Input_MoveConsole();
             }
-            else if (!CheckFormat.IsMatch(input) && !fromconsole) {
+            else if ((!CheckFormat.IsMatch(input) && !fromconsole) || Brett[rtn[0],rtn[1]] == null) {
                 client.Write(Encoding.UTF8.GetBytes("Falsche Eingabe!\n\r"));
                 Input_MoveServer(turnforwhite, client);
             }
             return rtn;
         }
-
     }
 }

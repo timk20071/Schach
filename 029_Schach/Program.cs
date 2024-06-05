@@ -23,6 +23,7 @@ namespace _029_Schach {
                         Console.WriteLine(System.Text.Encoding.UTF8.GetString(spielbrett.PrintBlack()));
                     }
                     i++;*/
+                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(spielbrett.PrintWhite()));
                     inputData = spielbrett.Input_MoveConsole();
                     spielbrett.Brett[inputData[0],inputData[1]].Console_Move(inputData[0],inputData[1],inputData[2],inputData[3],spielbrett, true);
 
