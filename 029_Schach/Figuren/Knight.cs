@@ -13,7 +13,7 @@ namespace _029_Schach.Figuren {
 
         public Knight(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
+        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett, bool isFromMove) {
             if (currxpos == ( targetxpos + 2 ) && currypos == ( targetypos + 1 ) ||
                 currxpos == ( targetxpos - 2 ) && currypos == ( targetypos + 1 ) ||
                 currxpos == ( targetxpos + 2 ) && currypos == ( targetypos - 1 ) ||
@@ -34,9 +34,8 @@ namespace _029_Schach.Figuren {
             else if (spielbrett.Brett[targetxpos,targetypos].IsWhite != spielbrett.Brett[currxpos,currypos].IsWhite) {
                 return true;
             }
-            else { 
-                return false; 
-            }
+            
+            return false; 
         }
     }
 }

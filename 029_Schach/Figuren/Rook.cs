@@ -13,7 +13,7 @@ namespace _029_Schach.Figuren {
 
         public Rook(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
-        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett) {
+        public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett, bool isFromMove) {
             if (currxpos == targetxpos || currypos == targetypos) { 
                 return true;
             }
@@ -21,36 +21,53 @@ namespace _029_Schach.Figuren {
         }
 
         public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
-            if (currypos < targetypos && currxpos == targetxpos) {//check if rook is going up 
-                for (int i = 1; i <= (targetypos - currypos); i++) {//calculates how many fields the rook has to go
-                    if (spielbrett.Brett[currxpos,currypos + i] != null) {//check if the path is free
+            if (currypos > targetypos && currxpos == targetxpos) {//check if rook is going up 
+                for (int i = 1; i <= Math.Abs(targetypos - currypos); i++) {//calculates how many fields the rook has to go
+                    if (spielbrett.Brett[currxpos,currypos - i] != null) {//check if the path is free
+                        if (currypos - i == targetypos && spielbrett.Brett[currxpos, currypos - i].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        {
+                            return true;
+                        }
                         return false;
                     }
                 }
             }
-            else if (currypos > targetypos && currxpos == targetxpos) {//check if rook is going down
+            else if (currypos < targetypos && currxpos == targetxpos) {//check if rook is going down
             
-                for (int i = 1; i <= (currypos - targetypos); i++) {//calculates how many fields the rook has to go
+                for (int i = 1; i <= Math.Abs(currypos - targetypos); i++) {//calculates how many fields the rook has to go
                 
-                    if (spielbrett.Brett[currxpos,currypos - i] != null) {//check if the path is free
+                    if (spielbrett.Brett[currxpos,currypos + i] != null) {//check if the path is free
+                        
+                        if (currypos + i == targetypos && spielbrett.Brett[currxpos, currypos + i].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        {
+                            return true;
+                        }
                         return false;
                     }
                 }
             }
             else if (currypos == targetypos && currxpos < targetxpos) {//check if rook is going right 
             
-                for (int i = 1; i <= (targetxpos - currxpos); i++) {//calculates how many fields the rook has to go
+                for (int i = 1; i <= Math.Abs(targetxpos - currxpos); i++) {//calculates how many fields the rook has to go
                 
                     if (spielbrett.Brett[currxpos + i,currypos] != null) {//check if the path is free
+                        if (currxpos + i == targetxpos && spielbrett.Brett[currxpos + i, currypos].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        {
+                            return true;
+                        }
                         return false;
                     }
                 }
             }
             else if (currypos == targetypos && currxpos > targetxpos) {//check if rook is going left
             
-                for (int i = 1; i <= (currxpos - targetxpos); i++) {//calculates how many fields the rook has to go
+                for (int i = 1; i <= Math.Abs(currxpos - targetxpos); i++) {//calculates how many fields the rook has to go
                 
                     if (spielbrett.Brett[currxpos - 1,currypos] != null) {//check if the path is free
+                        if (currxpos - i == targetxpos && spielbrett.Brett[currxpos - 1, currypos].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        {
+                            return true;
+                        }
                         return false;
                     }
                 }

@@ -19,9 +19,13 @@ namespace _029_Schach {
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i+1} | ";
                 for (int j = 0; j < 8; j++) {
                     if (Brett[j,i] != null)
-                        str += (Brett[j,i].Symbol + " | ");
+                    {
+                        str += (Brett[j, i].Symbol + " | ");
+                    }    
                     else
+                    {
                         str += "  | ";
+                    }
                 }
             }
             str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
@@ -37,9 +41,13 @@ namespace _029_Schach {
                 str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}{i + 1} | ";
                 for (int j = 0; j < 8; j++) {
                     if (Brett[j,i] != null)
-                        str += ( Brett[j,i].Symbol + " | " );
+                    {
+                        str += (Brett[j, i].Symbol + " | ");
+                    }
                     else
+                    {
                         str += "  | ";
+                    }                       
                 }
             }
             str += $"{Environment.NewLine}  ---------------------------------{Environment.NewLine}";
@@ -239,6 +247,42 @@ namespace _029_Schach {
             }
             sr.Close();
             fs.Close();
+        }
+
+        public List<char[,]> WinRecognition(Spielbrett spielbrett)
+        {
+            List<char[,]> rtn = new List<char[,]>();
+            char[,] possibleMovesWhite = new char[8, 8];
+            char[,] possibleMovesBlack = new char[8, 8];
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 8; y++)
+                {
+                    possibleMovesWhite[x, y] = 'o';
+                    possibleMovesBlack[x, y] = 'o';
+                }
+            }
+
+
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 8; y++)
+                {
+                    if (Brett[x, y] != null && Brett[x, y].IsWhite == true)
+                    {
+                        possibleMovesWhite = Brett[x, y].CheckAllPossibleMoves(possibleMovesWhite, x, y, spielbrett, true);
+
+                    }
+                    else if (Brett[x, y] != null && Brett[x, y].IsWhite == false)
+                    {
+                        possibleMovesBlack = Brett[x, y].CheckAllPossibleMoves(possibleMovesBlack, x, y, spielbrett, false);
+                    }
+
+                }
+            }
+            rtn.Add(possibleMovesWhite);
+            rtn.Add(possibleMovesBlack);
+            return rtn;
         }
     }
 }
