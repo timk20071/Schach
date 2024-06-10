@@ -159,14 +159,14 @@ namespace _029_Schach {
             fs.Close();
         }
 
-        public int[] Input_MoveConsole() {
+        public int[] Input_MoveConsole(bool turnforwhite) {
             char[] input = new char[5];
             Console.WriteLine("Eingabe: ");
             string strinput = Console.ReadLine();
             for (int i = 0; i < 5; i++) {
                 input[i] = strinput[i];
             }
-            return ConvertInput(input, true, null, true); // null and true = placeholder für tcp version
+            return ConvertInput(input, true, null, turnforwhite); // null and true = placeholder für tcp version
         }
 
         public int[] Input_MoveServer(bool turnforwhite, NetworkStream client) {
@@ -235,15 +235,27 @@ namespace _029_Schach {
 
                 rtn[3] = input[4] - '0' - 1;
             }
+            
             if((!CheckFormat.IsMatch(input) && fromconsole) || Brett[rtn[0],rtn[1]] == null) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Falsche Eingabe!");
                 Console.ResetColor();
-                Input_MoveConsole();
+                Input_MoveConsole(turnforwhite);
             }
             else if ((!CheckFormat.IsMatch(input) && !fromconsole) || Brett[rtn[0],rtn[1]] == null) {
                 client.Write(Encoding.UTF8.GetBytes("Falsche Eingabe!\n\r"));
                 Input_MoveServer(turnforwhite, client);
+            }
+
+            if (Brett[rtn[0],rtn[1]].IsWhite != turnforwhite && fromconsole) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Du darfst nur deine eigenen Figuren bewegen!");
+                Console.ResetColor();
+                Input_MoveConsole(turnforwhite);
+            }
+            else if (Brett[rtn[0],rtn[1]].IsWhite != turnforwhite && !fromconsole) {
+                client.Write(Encoding.UTF8.GetBytes("Du darfst nur deine eigenen Figuren bewegen!\n\r"));
+                Input_MoveServer(turnforwhite,client);
             }
             return rtn;
         }

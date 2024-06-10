@@ -25,7 +25,7 @@ namespace _029_Schach.Figuren {
             }
         }
 
-        public void Console_Move(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett, bool fromconsole)
+        public void Console_Move(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett, bool fromconsole, bool turnforwhite)
         {
             try
             {
@@ -55,12 +55,12 @@ namespace _029_Schach.Figuren {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
                 Console.ResetColor();
-                inputData = spielbrett.Input_MoveConsole();
+                inputData = spielbrett.Input_MoveConsole(turnforwhite);
                 currxpos = inputData[0];
                 currypos = inputData[1];
                 targetxpos = inputData[2];
                 targetypos = inputData[3];
-                spielbrett.Brett[currxpos, currypos].Console_Move(currxpos, currypos, targetxpos, targetypos, spielbrett, fromconsole);
+                spielbrett.Brett[currxpos, currypos].Console_Move(currxpos, currypos, targetxpos, targetypos, spielbrett, fromconsole, turnforwhite);
             }
         }
 
@@ -105,7 +105,7 @@ namespace _029_Schach.Figuren {
             return true;
         }
 
-        private void Capture(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett)
+        private void Capture(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett? spielbrett)
         {
             spielbrett.Brett[targetxpos, targetypos] = spielbrett.Brett[currxpos, currypos];
             spielbrett.Brett[currxpos, currypos] = null;

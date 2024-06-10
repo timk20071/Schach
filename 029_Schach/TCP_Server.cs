@@ -37,7 +37,7 @@ namespace _029_Schach {
             stream_b = client_b.GetStream();
         }
 
-        private void OutputGameState() {
+        private void OutputGameState() { // übergibt die beiden Spielfelder für die jeweilige Farbe
             stream_w.Write(spielbrett.PrintWhite());
             stream_b.Write(spielbrett.PrintBlack());
         }
@@ -52,12 +52,12 @@ namespace _029_Schach {
             }
             else {
                 movingstream = stream_b;
-            } 
+            }
             
             do {
                 input = spielbrett.Input_MoveServer(turnforwhite, movingstream);
                 movevalid = spielbrett.Brett[input[0],input[1]].Tcp_Move(input[0],input[1],input[2],input[3], spielbrett, movingstream);
-                Console.WriteLine(movevalid); // Console log if the move is valdi
+                Console.WriteLine(movevalid); // Gibt in der Konsole aus, ob Zug korrekt war
             } while (!movevalid);
             turnforwhite = !turnforwhite;
 

@@ -5,6 +5,7 @@ namespace _029_Schach {
     internal class Program {
         static void Main(string[] args) {
             int i  = 0;
+            bool turnforwhite;
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int breite = (Console.BufferWidth / 2) - 4;
             Console.SetCursorPosition(breite, 0);
@@ -24,17 +25,17 @@ namespace _029_Schach {
                 int[] inputData = new int[4];
                 // console move
                 while (true) {
-                    /*if (i % 2 == 0){  //changes the sides of the board
+                    if (i % 2 == 0){  //changes the sides of the board
                         Console.WriteLine(System.Text.Encoding.UTF8.GetString(spielbrett.PrintWhite()));
                     }
                     else{
                         Console.WriteLine(System.Text.Encoding.UTF8.GetString(spielbrett.PrintBlack()));
                     }
-                    i++;*/
-                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(spielbrett.PrintWhite()));
-                    inputData = spielbrett.Input_MoveConsole();
-                    spielbrett.Brett[inputData[0],inputData[1]].Console_Move(inputData[0],inputData[1],inputData[2],inputData[3],spielbrett, true);
+                    turnforwhite = !Convert.ToBoolean(i % 2);
 
+                    inputData = spielbrett.Input_MoveConsole(turnforwhite);
+                    spielbrett.Brett[inputData[0],inputData[1]].Console_Move(inputData[0],inputData[1],inputData[2],inputData[3],spielbrett, true,turnforwhite);
+                    i++;
                 }
             }
             
