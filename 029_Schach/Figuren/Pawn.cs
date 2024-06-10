@@ -25,7 +25,7 @@ namespace _029_Schach.Figuren {
                 if (isFromMove) _hasmoved = true;
                 return true;
             }
-            else if (spielbrett.Brett[currxpos, currypos].IsWhite == false && currypos - targetypos == 1 && Math.Abs(currxpos - targetxpos) == 1 && null != spielbrett.Brett[targetxpos, targetypos])//checks if white pawn is capturing
+            else if (spielbrett.Brett[currxpos, currypos].IsWhite == false && spielbrett.Brett[currxpos, currypos].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite && currypos - targetypos == 1 && Math.Abs(currxpos - targetxpos) == 1 && spielbrett.Brett[targetxpos, targetypos] != null)//checks if white pawn is capturing
             {
                 if (isFromMove) _hasmoved = true;
                 return true;
@@ -39,7 +39,7 @@ namespace _029_Schach.Figuren {
                 if (isFromMove) _hasmoved = true;
                 return true;
             }
-            else if (spielbrett.Brett[currxpos, currypos].IsWhite == true && currypos - targetypos == -1 && Math.Abs(currxpos - targetxpos) == 1 && null != spielbrett.Brett[targetxpos, targetypos])//checks if black pawn is capturing
+            else if (spielbrett.Brett[currxpos, currypos].IsWhite == true && spielbrett.Brett[currxpos,currypos].IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite && currypos - targetypos == -1 && Math.Abs(currxpos - targetxpos) == 1 && spielbrett.Brett[targetxpos, targetypos] != null)//checks if black pawn is capturing
             {
                 if (isFromMove) _hasmoved = true;
                 return true;

@@ -25,7 +25,8 @@ namespace _029_Schach.Figuren {
         }
 
         public override bool CheckIfPathIsClear(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett) {
-            if (spielbrett.Brett[currxpos,currypos].IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite) { return true; }
+            if (spielbrett.Brett[targetxpos,targetypos] == null) return true;
+            if (spielbrett.Brett[currxpos,currypos].IsWhite != spielbrett.Brett[targetxpos,targetypos].IsWhite) return true;
 
             return false;   
         }

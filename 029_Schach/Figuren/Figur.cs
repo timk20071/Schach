@@ -25,7 +25,7 @@ namespace _029_Schach.Figuren {
             }
         }
 
-        public void Console_Move(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett, bool fromconsole, bool turnforwhite)
+        public bool Console_Move(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett, bool forCheckAllMoves, bool turnforwhite, bool isFromMove)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace _029_Schach.Figuren {
                     throw new Exception("Der von Ihnen einegebener Zug ist nicht zulässig! Bitte geben Sie erneut ein");
                 }
 
-                if (!spielbrett.Brett[currxpos, currypos].CheckIfMoveCorrect(currxpos, currypos, targetxpos, targetypos, spielbrett, true))
+                if (!spielbrett.Brett[currxpos, currypos].CheckIfMoveCorrect(currxpos, currypos, targetxpos, targetypos, spielbrett, isFromMove))
                 {
                     throw new Exception("Der von Ihnen einegebener Zug ist führ diese Figur nicht zulässig! Bitte geben Sie erneut ein");
                 }
@@ -46,11 +46,17 @@ namespace _029_Schach.Figuren {
                         throw new Exception("Der von Ihnen einegebener Zug ist nicht zulässig! Bitte geben Sie erneut ein");
                     //}
                 }
-                Capture(currxpos, currypos, targetxpos, targetypos, spielbrett);
-                CheckPawnPromotion(targetxpos, targetypos, spielbrett.Brett, true, null);
+                if(!forCheckAllMoves) {
+                    Capture(currxpos, currypos, targetxpos, targetypos, spielbrett);
+                    CheckPawnPromotion(targetxpos, targetypos, spielbrett.Brett, true, null);
+                }
             }
             catch (Exception e)
             {
+                if (forCheckAllMoves)
+                {
+                    return false;
+                }
                 int[] inputData = new int[4];
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
@@ -60,8 +66,9 @@ namespace _029_Schach.Figuren {
                 currypos = inputData[1];
                 targetxpos = inputData[2];
                 targetypos = inputData[3];
-                spielbrett.Brett[currxpos, currypos].Console_Move(currxpos, currypos, targetxpos, targetypos, spielbrett, fromconsole, turnforwhite);
+                spielbrett.Brett[currxpos,currypos].Console_Move(currxpos,currypos,targetxpos,targetypos,spielbrett,forCheckAllMoves,turnforwhite, isFromMove); 
             }
+            return true;
         }
 
         public bool Tcp_Move(int currxpos, int currypos, int targetxpos, int targetypos, Spielbrett spielbrett, NetworkStream clientStream)
