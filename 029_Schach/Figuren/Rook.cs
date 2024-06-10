@@ -24,7 +24,7 @@ namespace _029_Schach.Figuren {
             if (currypos > targetypos && currxpos == targetxpos) {//check if rook is going up 
                 for (int i = 1; i <= Math.Abs(targetypos - currypos); i++) {//calculates how many fields the rook has to go
                     if (spielbrett.Brett[currxpos,currypos - i] != null) {//check if the path is free
-                        if (currypos - i == targetypos && spielbrett.Brett[currxpos, currypos - i].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        if (currypos - i == targetypos && spielbrett.Brett[currxpos, currypos - i].IsWhite != spielbrett.Brett[currxpos,currypos].IsWhite)
                         {
                             return true;
                         }
@@ -38,7 +38,7 @@ namespace _029_Schach.Figuren {
                 
                     if (spielbrett.Brett[currxpos,currypos + i] != null) {//check if the path is free
                         
-                        if (currypos + i == targetypos && spielbrett.Brett[currxpos, currypos + i].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        if (currypos + i == targetypos && spielbrett.Brett[currxpos, currypos + i].IsWhite != spielbrett.Brett[currxpos,currypos].IsWhite)
                         {
                             return true;
                         }
@@ -51,7 +51,7 @@ namespace _029_Schach.Figuren {
                 for (int i = 1; i <= Math.Abs(targetxpos - currxpos); i++) {//calculates how many fields the rook has to go
                 
                     if (spielbrett.Brett[currxpos + i,currypos] != null) {//check if the path is free
-                        if (currxpos + i == targetxpos && spielbrett.Brett[currxpos + i, currypos].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        if (currxpos + i == targetxpos && spielbrett.Brett[currxpos + i, currypos].IsWhite != spielbrett.Brett[currxpos,currypos].IsWhite)
                         {
                             return true;
                         }
@@ -64,7 +64,7 @@ namespace _029_Schach.Figuren {
                 for (int i = 1; i <= Math.Abs(currxpos - targetxpos); i++) {//calculates how many fields the rook has to go
                 
                     if (spielbrett.Brett[currxpos - 1,currypos] != null) {//check if the path is free
-                        if (currxpos - i == targetxpos && spielbrett.Brett[currxpos - 1, currypos].IsWhite != spielbrett.Brett[targetxpos, targetypos].IsWhite)
+                        if (currxpos - i == targetxpos && spielbrett.Brett[currxpos - 1, currypos].IsWhite != spielbrett.Brett[currxpos,currypos].IsWhite)
                         {
                             return true;
                         }

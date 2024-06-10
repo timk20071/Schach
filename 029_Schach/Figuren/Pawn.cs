@@ -15,31 +15,31 @@ namespace _029_Schach.Figuren {
         public Pawn(bool iswhite) : base(iswhite,_symbolWhite,_symbolBlack,savecharacter) { }
 
         public override bool CheckIfMoveCorrect(int currxpos,int currypos,int targetxpos,int targetypos, Spielbrett spielbrett, bool isFromMove) {
-            if (spielbrett.Brett[currypos, currypos].IsWhite == true && currypos - targetypos == 2 && currxpos == targetxpos && _hasmoved == false)//checks if white pawn is moving two steps up
+            if (spielbrett.Brett[currxpos, currypos].IsWhite == false && currypos - targetypos == 2 && currxpos == targetxpos && _hasmoved == false)//checks if white pawn is moving two steps up
             {
                 if (isFromMove) _hasmoved = true;             
                 return true;
             }
-            else if (spielbrett.Brett[currypos, currypos].IsWhite == true && currypos - targetypos == 1 && currxpos == targetxpos)//checks if white pawn is moving one step up
+            else if (spielbrett.Brett[currxpos, currypos].IsWhite == false && currypos - targetypos == 1 && currxpos == targetxpos)//checks if white pawn is moving one step up
             {
                 if (isFromMove) _hasmoved = true;
                 return true;
             }
-            else if (spielbrett.Brett[currypos, currypos].IsWhite == true && currypos - targetypos == 1 && Math.Abs(currxpos - targetxpos) == 1 && null != spielbrett.Brett[targetxpos, targetypos])//checks if white pawn is capturing
+            else if (spielbrett.Brett[currxpos, currypos].IsWhite == false && currypos - targetypos == 1 && Math.Abs(currxpos - targetxpos) == 1 && null != spielbrett.Brett[targetxpos, targetypos])//checks if white pawn is capturing
             {
                 if (isFromMove) _hasmoved = true;
                 return true;
-            }else if (spielbrett.Brett[currypos, currypos].IsWhite == false && currypos - targetypos == -2 && currxpos == targetxpos && _hasmoved == false)//checks if black pawn is moving two steps down
-            {
-                if (isFromMove) _hasmoved = true;
-                return true;
-            }
-            else if (spielbrett.Brett[currypos, currypos].IsWhite == false && currypos - targetypos == -1 && currxpos == targetxpos)//checks if black pawn is moving one step down
+            }else if (spielbrett.Brett[currxpos, currypos].IsWhite == true && currypos - targetypos == -2 && currxpos == targetxpos && _hasmoved == false)//checks if black pawn is moving two steps down
             {
                 if (isFromMove) _hasmoved = true;
                 return true;
             }
-            else if (spielbrett.Brett[currypos, currypos].IsWhite == false && currypos - targetypos == -1 && Math.Abs(currxpos - targetxpos) == 1 && null != spielbrett.Brett[targetxpos, targetypos])//checks if black pawn is capturing
+            else if (spielbrett.Brett[currxpos, currypos].IsWhite == true && currypos - targetypos == -1 && currxpos == targetxpos)//checks if black pawn is moving one step down
+            {
+                if (isFromMove) _hasmoved = true;
+                return true;
+            }
+            else if (spielbrett.Brett[currxpos, currypos].IsWhite == true && currypos - targetypos == -1 && Math.Abs(currxpos - targetxpos) == 1 && null != spielbrett.Brett[targetxpos, targetypos])//checks if black pawn is capturing
             {
                 if (isFromMove) _hasmoved = true;
                 return true;

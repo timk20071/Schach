@@ -6,7 +6,13 @@ namespace _029_Schach {
         static void Main(string[] args) {
             int i  = 0;
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine("Modus:");
+            int breite = (Console.BufferWidth / 2) - 4;
+            Console.SetCursorPosition(breite, 0);
+            Console.WriteLine("________");
+            Console.SetCursorPosition(breite,1);
+            Console.WriteLine("|Schach|");
+            Console.SetCursorPosition(breite,2);
+            Console.WriteLine("");
             if (Convert.ToInt32(Console.ReadLine()) == 1) {
                 TCP_Server tcp_tcpserver = new TCP_Server(false);
                 while (true) {
@@ -35,4 +41,3 @@ namespace _029_Schach {
         }
     }
 }
-
