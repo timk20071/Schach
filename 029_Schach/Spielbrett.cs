@@ -160,7 +160,8 @@ namespace _029_Schach {
 
         public int[] Input_MoveConsole(bool turnforwhite) {
             char[] input = new char[5];
-            CheckSchach();
+            char[] schach = new char[2];
+            // schach = CheckSchach();
             Console.WriteLine("Eingabe: ");
             string strinput = Console.ReadLine();
             for (int i = 0; i < 5; i++) {
@@ -351,21 +352,24 @@ namespace _029_Schach {
                         else {
                             status[0] = 'C';
                             status[1] = 'W';
-                        }
-                    }
-                    else if(true) { 
-                    //else if (Brett[j,i].Savecharacter == 'k' && datatext_white[j,i] == 'P') {
-                        b = CheckSchachMatt(datatext_white, j, i);
-                        if (b)
-                        {
-                            status[0] = 'M';
-                            status[1] = 'B';
                             break;
                         }
-                        else {
-                            status[0] = 'C';
-                            status[1] = 'B';
-                            b = true;
+                    }
+                    else {
+                        if (true) {
+                            //else if (Brett[j,i].Savecharacter == 'k' && datatext_white[j,i] == 'P') {
+                            b = CheckSchachMatt(datatext_white,j,i);
+                            if (b) {
+                                status[0] = 'M';
+                                status[1] = 'B';
+                                break;
+                            }
+                            else {
+                                status[0] = 'C';
+                                status[1] = 'B';
+                                b = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -379,7 +383,8 @@ namespace _029_Schach {
         private bool CheckSchachMatt(char[,] data, int currxpos, int currypos) {
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    if (data[currxpos + i, currypos + j] == 'N') {
+                    if (currxpos + i < 0 || currypos + j < 0 || currxpos + i >= 8 || currypos + j >= 8) {}
+                    else if (data[currxpos + i, currypos + j] == 'N') {
                         return false;
                     }
                 }
